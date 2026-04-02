@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luni — Baby Tracker for Swiss Families</title>
+  <meta name="description" content="Track feedings, sleep, diapers and growth. Built for Swiss families — with partner sync, Swiss health reminders, and a one-time price of a coffee and a Gipfeli." />
+  <meta property="og:title" content="Luni — Baby Tracker for Swiss Families" />
+  <meta property="og:description" content="Support a Swiss mum and her baby — for the price of a coffee and a Gipfeli." />
+  <meta property="og:image" content="og-image.png" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --cream: #FDFAF5;
+      --warm-white: #FFFFFF;
+      --ink: #1A1A1A;
+      --ink-soft: #4A4A4A;
+      --ink-muted: #8A8A8A;
+      --moon: #F5C842;
+      --moon-soft: #FFF4C2;
+      --accent: #E8845A;
+      --accent-soft: #FFF0E8;
+      --green: #5AAF82;
+      --border: #EBEBEB;
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 250, 245, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .nav-logo .moon-icon {
+      font-size: 22px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--ink);
+      color: white !important;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: #333 !important; color: white !important; }
+
+    /* HERO */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--moon-soft);
+      color: #9A7A00;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      letter-spacing: 0.2px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--ink);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      width: fit-content;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .btn-primary svg { width: 20px; height: 20px; }
+    .hero-note {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+    .hero-note strong { color: var(--accent); }
+
+    /* PHONE MOCKUP */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .phone-frame {
+      width: 280px;
+      background: var(--ink);
+      border-radius: 44px;
+      padding: 10px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .phone-screen {
+      background: #F2F2F7;
+      border-radius: 36px;
+      overflow: hidden;
+      aspect-ratio: 9/19.5;
+      display: flex;
+      flex-direction: column;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .phone-screen .screen-placeholder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(145deg, #F2F2F7 0%, #E8E8ED 100%);
+      color: var(--ink-muted);
+      font-size: 13px;
+    }
+    .phone-screen .screen-placeholder .moon-big { font-size: 48px; }
+
+    .phone-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(245,200,66,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    /* SCREENSHOTS ROW */
+    .screenshots {
+      padding: 0 24px 80px;
+      overflow: hidden;
+    }
+    .screenshots-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .screenshots-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+    }
+    .screenshots-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    .screenshot-thumb {
+      width: 160px;
+      flex-shrink: 0;
+      background: var(--ink);
+      border-radius: 28px;
+      padding: 6px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    .screenshot-thumb img {
+      width: 100%;
+      border-radius: 22px;
+      display: block;
+      aspect-ratio: 9/19.5;
+      object-fit: cover;
+    }
+    .screenshot-thumb .thumb-placeholder {
+      aspect-ratio: 9/19.5;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #F2F2F7, #E5E5EA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* SECTION SHARED */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin-bottom: 56px;
+      line-height: 1.7;
+    }
+
+    /* FEATURES GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .feature-card.accent-yellow { background: var(--moon-soft); border-color: #F5E090; }
+    .feature-card.accent-orange { background: var(--accent-soft); border-color: #F5C4A8; }
+    .feature-card.accent-green { background: #EEF8F3; border-color: #B8DEC8; }
+    .feature-icon { font-size: 36px; margin-bottom: 20px; }
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+    .feature-card p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .feature-card .badge {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: var(--moon);
+      color: var(--ink);
+    }
+    .feature-card .badge.free { background: #D4EDDA; color: #155724; }
+    .feature-card .badge.premium { background: var(--ink); color: white; }
+
+    /* SWISS SECTION */
+    .swiss-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .swiss-visual {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .swiss-visual::before {
+      content: '🇨🇭';
+      position: absolute;
+      font-size: 120px;
+      opacity: 0.05;
+      right: -10px;
+      bottom: -10px;
+    }
+    .reminder-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .reminder-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+    .reminder-item .check {
+      width: 24px;
+      height: 24px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: white;
+      flex-shrink: 0;
+    }
+    .reminder-item .lock {
+      width: 24px;
+      height: 24px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: white;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+    .reminder-more {
+      margin-top: 16px;
+      padding: 14px 20px;
+      background: var(--ink);
+      color: white;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 720px;
+    }
+    .pricing-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+    .pricing-card.featured {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white;
+      position: relative;
+    }
+    .pricing-card.featured::before {
+      content: '⭐ Most popular';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--moon);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .pricing-tier {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.6;
+      margin-bottom: 12px;
+    }
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-price span { font-size: 20px; font-weight: 500; letter-spacing: 0; }
+    .pricing-desc {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .pricing-card.featured .pricing-features li::before { color: var(--moon); }
+    .pricing-features li.muted { opacity: 0.4; }
+    .pricing-features li.muted::before { content: '–'; color: inherit; }
+
+    /* STORY */
+    .story-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 56px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .story-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--moon) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      flex-shrink: 0;
+    }
+    .story-text blockquote {
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--ink);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .story-text cite {
+      font-style: normal;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    /* WAITLIST */
+    .waitlist-section {
+      background: var(--ink);
+      border-radius: var(--radius);
+      padding: 64px;
+      text-align: center;
+      color: white;
+      margin-bottom: 100px;
+    }
+    .waitlist-section h2 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .waitlist-section p {
+      font-size: 18px;
+      opacity: 0.7;
+      margin-bottom: 36px;
+    }
+    .waitlist-form {
+      display: flex;
+      gap: 12px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .waitlist-form input {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 50px;
+      border: none;
+      font-size: 15px;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      outline: none;
+    }
+    .waitlist-form input::placeholder { color: rgba(255,255,255,0.4); }
+    .waitlist-form input:focus { background: rgba(255,255,255,0.18); }
+    .waitlist-form button {
+      padding: 14px 24px;
+      border-radius: 50px;
+      border: none;
+      background: var(--moon);
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s;
+      white-space: nowrap;
+    }
+    .waitlist-form button:hover { transform: scale(1.03); }
+    .waitlist-note {
+      font-size: 13px;
+      opacity: 0.5;
+      margin-top: 16px;
+    }
+
+    /* LANGUAGES */
+    .lang-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .lang-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 40px;
+        gap: 40px;
+      }
+      .hero-visual { order: -1; }
+      .phone-frame { width: 220px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .swiss-section { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .story-card { grid-template-columns: 1fr; text-align: center; }
+      .story-avatar { margin: 0 auto; }
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .nav-links { display: none; }
+      .waitlist-form { flex-direction: column; }
+      .screenshots-row .screenshot-thumb:nth-child(n+4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="moon-icon">🌙</span>
+      Luni
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#swiss">Swiss First</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#waitlist" class="nav-cta">Get Early Access</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🇨🇭 Made in Switzerland</div>
+    <h1>The baby tracker<br/>built for <em>Swiss</em> families.</h1>
+    <p>Track feedings, sleep, diapers and growth — together with your partner, in real time. With Swiss health reminders no other app offers.</p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on App Store
+      </a>
+      <p class="hero-note">Coming soon. <strong>Join the waitlist</strong> for early access. ↓</p>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="phone-glow"></div>
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <img src="screenshots/dashboard.png" alt="Luni dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="screen-placeholder" style="display:none">
+          <div class="moon-big">🌙</div>
+          <div>Luni</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOTS ROW -->
+<div class="screenshots">
+  <div class="screenshots-inner">
+    <p class="screenshots-label">Everything your family needs</p>
+    <div class="screenshots-row">
+      <div class="screenshot-thumb">
+        <img src="screenshots/dashboard.png" alt="Dashboard" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>📊</div>'" />
+      </div>
+      <div class="screenshot-thumb">
+        <img src="screenshots/feeding.png" alt="Feeding tracker" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>🍼</div>'" />
+      </div>
+      <div class="screenshot-thumb">
+        <img src="screenshots/sleep.png" alt="Sleep insights" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>😴</div>'" />
+      </div>
+      <div class="screenshot-thumb">
+        <img src="screenshots/growth.png" alt="Growth charts" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>📈</div>'" />
+      </div>
+      <div class="screenshot-thumb">
+        <img src="screenshots/reminders.png" alt="Swiss reminders" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>🇨🇭</div>'" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <p class="section-label">Features</p>
+  <h2 class="section-title">Everything in one place.</h2>
+  <p class="section-subtitle">Built for the exhausted, sleep-deprived, completely-in-love-with-their-baby parent. Simple by design. Smart under the hood.</p>
+
+  <div class="features-grid">
+    <div class="feature-card accent-yellow">
+      <div class="feature-icon">🔗</div>
+      <h3>Real-Time Partner Sync</h3>
+      <p>One tap. Your partner gets a link — no account, no password, no friction. Both of you see every feeding, every nap, every diaper change instantly via iCloud.</p>
+      <span class="badge free">Free</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🍼</div>
+      <h3>Live Feeding Timers</h3>
+      <p>Track breast, bottle and solid feeds with live elapsed timers. Switch sides mid-feed. See exactly when the last feed started — even if you've forgotten.</p>
+      <span class="badge free">Free</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">😴</div>
+      <h3>Sleep Prediction</h3>
+      <p>Our Bayesian engine learns your baby's sleep patterns and tells you when the next nap window opens — before the overtired meltdown hits.</p>
+      <span class="badge premium">Premium</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>WHO Growth Charts</h3>
+      <p>Track weight, height and head circumference against WHO percentiles. Export charts for your Kinderarzt appointment.</p>
+      <span class="badge free">Free</span>
+    </div>
+    <div class="feature-card accent-orange">
+      <div class="feature-icon">🇨🇭</div>
+      <h3>Swiss Health Reminders</h3>
+      <p>41+ age-appropriate checkups, vaccinations, and admin tasks — specific to Switzerland. From the U5 to Vitamin K. Nothing falls through the cracks.</p>
+      <span class="badge premium">Premium</span>
+    </div>
+    <div class="feature-card accent-green">
+      <div class="feature-icon">👥</div>
+      <h3>Multi-Caregiver Logging</h3>
+      <p>Each event is tagged with who logged it — you, your partner, grandma. Everyone stays in the loop, and nobody duplicates a feeding.</p>
+      <span class="badge free">Free</span>
+    </div>
+  </div>
+</section>
+
+<!-- SWISS SECTION -->
+<section id="swiss">
+  <div class="swiss-section">
+    <div>
+      <p class="section-label">Built for Switzerland</p>
+      <h2 class="section-title">No app does this for Swiss families.</h2>
+      <p class="section-subtitle">Every other baby tracker was built in Silicon Valley and doesn't know what a U5-Untersuchung is. We do.</p>
+      <div class="lang-pills">
+        <span class="lang-pill">🇩🇪 Deutsch</span>
+        <span class="lang-pill">🇬🇧 English</span>
+        <span class="lang-pill">🇫🇷 Français</span>
+        <span class="lang-pill">🇮🇹 Italiano</span>
+      </div>
+    </div>
+    <div class="swiss-visual">
+      <p style="font-weight:700; margin-bottom:20px; font-size:15px; color: var(--ink-muted);">Swiss Health Reminders</p>
+      <ul class="reminder-list">
+        <li class="reminder-item"><span class="check">✓</span> Vitamin K at birth (free)</li>
+        <li class="reminder-item"><span class="check">✓</span> U2 – Newborn check, 3–10 days (free)</li>
+        <li class="reminder-item"><span class="check">✓</span> Heel prick test (free)</li>
+        <li class="reminder-item"><span class="lock">🔒</span> U3 – 4–6 weeks checkup</li>
+        <li class="reminder-item"><span class="lock">🔒</span> First vaccinations (6–8 weeks)</li>
+        <li class="reminder-item"><span class="lock">🔒</span> Hearing test follow-up</li>
+        <li class="reminder-item"><span class="lock">🔒</span> + 38 more reminders…</li>
+      </ul>
+      <div class="reminder-more">Unlock all 41+ reminders — CHF 5.90</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <p class="section-label">Pricing</p>
+  <h2 class="section-title">Support a Swiss mum and her baby.</h2>
+  <p class="section-subtitle">For the price of a coffee and a Gipfeli — one time, forever. No subscription. No tricks.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <p class="pricing-tier">Free</p>
+      <p class="pricing-price">CHF <span>0</span></p>
+      <p class="pricing-desc">Always free. No credit card.</p>
+      <ul class="pricing-features">
+        <li>Feedings, sleep & diaper logging</li>
+        <li>Real-time partner sync</li>
+        <li>WHO growth charts</li>
+        <li>3 Swiss health reminders</li>
+        <li>Timeline & history view</li>
+        <li>Multi-baby support</li>
+        <li class="muted">All 41+ Swiss reminders</li>
+        <li class="muted">Sleep & nap insights</li>
+        <li class="muted">Growth chart export</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <p class="pricing-tier">Premium</p>
+      <p class="pricing-price">CHF <span>5.90</span></p>
+      <p class="pricing-desc">One-time payment. Yours forever.</p>
+      <ul class="pricing-features">
+        <li>Everything in Free</li>
+        <li>All 41+ Swiss health reminders</li>
+        <li>Sleep prediction & nap windows</li>
+        <li>Growth chart export (PDF)</li>
+        <li>Priority support</li>
+        <li>All future features included</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-card">
+    <div class="story-avatar">🤱</div>
+    <div class="story-text">
+      <blockquote>"I built this app while I was pregnant, because every app I tried was made for American parents and didn't know a thing about Swiss checkups or vaccinations. Now my baby is here — and so is Luni."</blockquote>
+      <cite>Anna — Developer, new mum, Zürich 🇨🇭</cite>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section id="waitlist" style="padding-bottom: 0">
+  <div class="waitlist-section">
+    <h2>🌙 Be the first to know.</h2>
+    <p>Luni is launching soon on the Swiss App Store. Leave your email for early access.</p>
+    <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit">Notify me</button>
+    </form>
+    <p class="waitlist-note">No spam. Just one email when we launch.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">🌙 Luni</span>
+    <ul class="footer-links">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="mailto:hello@getluni.ch">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Luni. Made with ❤️ in Zürich.</span>
+  </div>
+</footer>
+
+<script>
+function handleWaitlist(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input').value;
+  const btn = e.target.querySelector('button');
+  btn.textContent = '🎉 You\'re on the list!';
+  btn.disabled = true;
+  e.target.querySelector('input').disabled = true;
+  // TODO: Connect to a form backend (Formspree, Netlify Forms, etc.)
+  console.log('Waitlist signup:', email);
+}
+</script>
+
+</body>
+</html>
