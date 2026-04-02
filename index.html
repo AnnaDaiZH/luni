@@ -60,17 +60,17 @@
       background: white; border: 1px solid var(--border);
       border-radius: 50px; padding: 6px 12px;
       font-size: 14px; font-weight: 500; color: var(--ink-soft);
-      cursor: pointer; transition: all 0.2s;
+      cursor: pointer; transition: all 0.2s; user-select: none;
     }
     .lang-btn:hover { border-color: var(--ink-muted); color: var(--ink); }
     .lang-dropdown {
-      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      display: none; position: absolute; top: calc(100% + 4px); right: 0;
       background: white; border: 1px solid var(--border);
       border-radius: var(--radius-sm); overflow: hidden;
       box-shadow: 0 8px 30px rgba(0,0,0,0.1); min-width: 140px; z-index: 200;
+      padding: 4px 0;
     }
-    .lang-switcher:hover .lang-dropdown,
-    .lang-dropdown:hover { display: block; }
+    .lang-switcher.open .lang-dropdown { display: block; }
     .lang-option {
       display: flex; align-items: center; gap: 10px;
       padding: 10px 16px; font-size: 14px; font-weight: 500;
@@ -201,6 +201,7 @@
     <ul class="nav-links">
       <li><a href="#features" data-i18n="nav_features">Funktionen</a></li>
       <li><a href="#swiss" data-i18n="nav_swiss">Schweiz</a></li>
+      <li><a href="#privacy-banner" data-i18n="nav_privacy">Datenschutz</a></li>
       <li><a href="#pricing" data-i18n="nav_pricing">Preis</a></li>
       <li class="lang-switcher">
         <div class="lang-btn" id="langBtn">🇩🇪 DE ▾</div>
@@ -257,7 +258,7 @@
 
 <!-- PRIVACY BANNER -->
 <div style="max-width:1100px;margin:0 auto;padding:0 24px 60px;">
-  <div class="privacy-grid" style="background:#F5C842;border-radius:20px;padding:40px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;">
+  <div id="privacy-banner" class="privacy-grid" style="background:#FEF3C7;border-radius:20px;padding:40px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;">
     <div>
       <div style="font-size:32px;margin-bottom:12px;">🔒</div>
       <div style="font-weight:700;color:#1A1A1A;font-size:16px;margin-bottom:6px;" data-i18n="priv1_title">Keine Datenweitergabe</div>
@@ -280,7 +281,7 @@
 <section id="features">
   <p class="section-label" data-i18n="feat_label">Funktionen</p>
   <h2 class="section-title" data-i18n="feat_title">Alles an einem Ort.</h2>
-  <p class="section-subtitle" data-i18n="feat_subtitle">Gebaut für erschöpfte, schlafmangel-geplagte, trotzdem total verliebte Eltern. Einfach im Design. Schlau unter der Haube.</p>
+  <p class="section-subtitle" data-i18n="feat_subtitle">Für alle, die gerade kaum schlafen - aber ihr Baby nicht missen möchten. Klar und einfach zu bedienen.</p>
   <div class="features-grid">
     <div class="feature-card accent-yellow">
       <div class="feature-icon">🔗</div>
@@ -404,7 +405,7 @@
     <div class="story-avatar">🤱</div>
     <div class="story-text">
       <blockquote data-i18n="story_quote">"Ich habe diese App gebaut, als ich schwanger war, weil jede App, die ich probiert habe, für amerikanische Eltern gemacht wurde und nicht wusste, was eine U5-Untersuchung ist. Jetzt ist mein Baby da , und Luni auch."</blockquote>
-      <cite data-i18n="story_cite">Anna , Entwicklerin, frischgebackene Mama, Zürich 🇨🇭</cite>
+      <cite data-i18n="story_cite">Anna, Entwicklerin und frischgebackene Mama aus Winti 🇨🇭</cite>
     </div>
   </div>
 </section>
@@ -419,14 +420,14 @@
       <li><a href="eula.html">EULA</a></li>
       <li><a href="mailto:hello@getluni.ch" data-i18n="footer_contact">Kontakt</a></li>
     </ul>
-    <span class="footer-copy" data-i18n="footer_copy">© 2026 Luni. Mit ❤️ in Zürich gemacht.</span>
+    <span class="footer-copy" data-i18n="footer_copy">© 2026 Luni. Mit ❤️ in Winti gemacht.</span>
   </div>
 </footer>
 
 <script>
 const translations = {
   de: {
-    nav_features: 'Funktionen', nav_swiss: 'Schweiz', nav_pricing: 'Preis', nav_download: 'Im App Store laden',
+    nav_features: 'Funktionen', nav_swiss: 'Schweiz', nav_privacy: 'Datenschutz', nav_pricing: 'Preis', nav_download: 'Im App Store laden',
     hero_badge: 'Made in Switzerland',
     hero_title: 'Der Baby-Tracker<br/>für <em>Schweizer</em> Familien.',
     hero_desc: 'Stillzeiten, Schlaf, Windeln und Wachstum tracken , gemeinsam mit deinem Partner, in Echtzeit. Mit Schweizer Gesundheitserinnerungen, die kein anderes App bietet.',
@@ -437,7 +438,7 @@ const translations = {
     priv2_title: 'Bleibt auf deinem Gerät', priv2_desc: 'Alle Daten bleiben auf deinem iPhone und deinem persönlichen iCloud. Unsere Server existieren nicht.',
     priv3_title: 'Deine iCloud, deine Regeln', priv3_desc: 'Partner-Sync via Apple , deine Daten, deine Apple-ID, deine Kontrolle.',
     feat_label: 'Funktionen', feat_title: 'Alles an einem Ort.',
-    feat_subtitle: 'Gebaut für erschöpfte, schlafmangel-geplagte, trotzdem total verliebte Eltern. Einfach im Design. Schlau unter der Haube.',
+    feat_subtitle: 'Für alle, die gerade kaum schlafen - aber ihr Baby nicht missen möchten. Klar und einfach zu bedienen.',
     f1_title: 'Partner-Sync in Echtzeit', f1_desc: 'Ein Tipp. Dein Partner erhält einen Link , kein Konto, kein Passwort, kein Aufwand. Beide sehen jede Mahlzeit, jeden Schlaf, jede Windel sofort via iCloud.',
     f2_title: 'Live-Timer für Mahlzeiten', f2_desc: 'Brust, Flasche und Beikost mit Live-Timern tracken. Seite wechseln. Genau sehen, wann die letzte Mahlzeit begann , auch wenn du es vergessen hast.',
     f3_title: 'Schlafvorhersage', f3_desc: 'Unsere Algorithmen lernen das individuelle Schlafmuster deines Babys und sagen dir, wann das nächste Schlaffenster öffnet , bevor der Übermüdungs-Meltdown kommt.',
@@ -465,14 +466,14 @@ const translations = {
     pp3: 'Schlafvorhersage & Schlaffenster', pp4: 'Priority-Support',
     pp5: 'Alle künftigen Funktionen inklusive', pp6: 'Null Daten gesammelt, immer',
     story_quote: '"Ich habe diese App gebaut, als ich schwanger war, weil jede App, die ich probiert habe, für amerikanische Eltern gemacht wurde und nicht wusste, was eine U5-Untersuchung ist. Jetzt ist mein Baby da , und Luni auch."',
-    story_cite: 'Anna , Entwicklerin, frischgebackene Mama, Zürich 🇨🇭',
+    story_cite: 'Anna, Entwicklerin und frischgebackene Mama aus Winti 🇨🇭',
     footer_privacy: 'Datenschutz', footer_terms: 'AGB', footer_contact: 'Kontakt',
-    footer_copy: '© 2026 Luni. Mit ❤️ in Zürich gemacht.',
+    footer_copy: '© 2026 Luni. Mit ❤️ in Winti gemacht.',
     lang_label: '🇩🇪 DE',
     popular: '⭐ Am beliebtesten'
   },
   fr: {
-    nav_features: 'Fonctionnalités', nav_swiss: 'Suisse', nav_pricing: 'Prix', nav_download: 'Télécharger',
+    nav_features: 'Fonctionnalités', nav_swiss: 'Suisse', nav_privacy: 'Confidentialité', nav_pricing: 'Prix', nav_download: 'Télécharger',
     hero_badge: 'Made in Switzerland',
     hero_title: "L'app bébé faite pour les <em>familles suisses</em>.",
     hero_desc: "Suivez les repas, le sommeil, les couches et la croissance , avec votre partenaire, en temps réel. Avec des rappels santé suisses qu'aucune autre app ne propose.",
@@ -483,7 +484,7 @@ const translations = {
     priv2_title: 'Reste sur votre appareil', priv2_desc: 'Toutes les données restent sur votre iPhone et votre iCloud personnel. Nos serveurs n\'existent pas.',
     priv3_title: 'Votre iCloud, vos règles', priv3_desc: 'Sync partenaire via Apple , vos données, votre Apple ID, votre contrôle.',
     feat_label: 'Fonctionnalités', feat_title: 'Tout en un seul endroit.',
-    feat_subtitle: 'Conçu pour les parents épuisés, en manque de sommeil, mais complètement amoureux de leur bébé.',
+    feat_subtitle: 'Pour les parents qui ne dorment plus, mais qui adorent leur bébé. Simple à utiliser, même à 3h du matin.',
     f1_title: 'Sync partenaire en temps réel', f1_desc: "Un tap. Votre partenaire reçoit un lien , pas de compte, pas de mot de passe. Vous voyez tous les repas, les siestes et les couches instantanément.",
     f2_title: 'Minuteries repas en direct', f2_desc: "Suivez l'allaitement, le biberon et les solides avec des minuteries en direct. Changez de côté. Voyez exactement quand le dernier repas a commencé.",
     f3_title: 'Prédiction du sommeil', f3_desc: "Nos algorithmes apprennent les habitudes de sommeil uniques de votre bébé et vous indiquent quand la prochaine fenêtre de sieste s'ouvre.",
@@ -511,14 +512,14 @@ const translations = {
     pp3: 'Prédiction & fenêtres de sommeil', pp4: 'Support prioritaire',
     pp5: 'Toutes les futures fonctionnalités incluses', pp6: 'Zéro donnée collectée, toujours',
     story_quote: '"J\'ai construit cette app pendant ma grossesse, parce que chaque app que j\'essayais était faite pour des parents américains et ne savait pas ce qu\'est un examen U5. Maintenant mon bébé est là , et Luni aussi."',
-    story_cite: 'Anna , Développeuse, jeune maman, Zürich 🇨🇭',
+    story_cite: 'Anna, développeuse et jeune maman de Winti 🇨🇭',
     footer_privacy: 'Confidentialité', footer_terms: 'CGU', footer_contact: 'Contact',
-    footer_copy: '© 2026 Luni. Fait avec ❤️ à Zürich.',
+    footer_copy: '© 2026 Luni. Fait avec ❤️ à Winti.',
     lang_label: '🇫🇷 FR',
     popular: '⭐ Le plus populaire'
   },
   it: {
-    nav_features: 'Funzionalità', nav_swiss: 'Svizzera', nav_pricing: 'Prezzo', nav_download: 'Scarica',
+    nav_features: 'Funzionalità', nav_swiss: 'Svizzera', nav_privacy: 'Privacy', nav_pricing: 'Prezzo', nav_download: 'Scarica',
     hero_badge: 'Made in Switzerland',
     hero_title: "L'app per neonati per le <em>famiglie svizzere</em>.",
     hero_desc: "Tieni traccia di poppate, sonno, pannolini e crescita , insieme al tuo partner, in tempo reale. Con promemoria sanitari svizzeri che nessun'altra app offre.",
@@ -529,7 +530,7 @@ const translations = {
     priv2_title: 'Rimane sul tuo dispositivo', priv2_desc: 'Tutti i dati rimangono sul tuo iPhone e nel tuo iCloud personale. I nostri server non esistono.',
     priv3_title: 'Il tuo iCloud, le tue regole', priv3_desc: 'Sync partner via Apple , i tuoi dati, il tuo Apple ID, il tuo controllo.',
     feat_label: 'Funzionalità', feat_title: 'Tutto in un unico posto.',
-    feat_subtitle: 'Costruito per genitori esausti, privi di sonno, ma completamente innamorati del loro bambino.',
+    feat_subtitle: 'Per i genitori che non dormono piu, ma amano il loro bambino. Semplice, anche alle 3 di notte.',
     f1_title: 'Sync partner in tempo reale', f1_desc: 'Un tap. Il tuo partner riceve un link , nessun account, nessuna password. Vedete ogni poppata, ogni pisolino, ogni pannolino istantaneamente.',
     f2_title: 'Timer poppate live', f2_desc: 'Traccia allattamento, biberon e solidi con timer live. Cambia lato. Vedi esattamente quando è iniziata l\'ultima poppata.',
     f3_title: 'Previsione del sonno', f3_desc: 'I nostri algoritmi imparano i ritmi di sonno unici del tuo bambino e ti dicono quando si apre la prossima finestra di sonno.',
@@ -557,14 +558,14 @@ const translations = {
     pp3: 'Previsione & finestre di sonno', pp4: 'Supporto prioritario',
     pp5: 'Tutte le future funzionalità incluse', pp6: 'Zero dati raccolti, sempre',
     story_quote: '"Ho costruito questa app mentre ero incinta, perché ogni app che provavo era fatta per genitori americani e non sapeva cosa fosse una visita U5. Ora il mio bambino è qui , e Luni anche."',
-    story_cite: 'Anna , Sviluppatrice, neo-mamma, Zürich 🇨🇭',
+    story_cite: 'Anna, sviluppatrice e neo-mamma di Winti 🇨🇭',
     footer_privacy: 'Privacy', footer_terms: 'Termini', footer_contact: 'Contatto',
-    footer_copy: '© 2026 Luni. Fatto con ❤️ a Zurigo.',
+    footer_copy: '© 2026 Luni. Fatto con ❤️ a Winti.',
     lang_label: '🇮🇹 IT',
     popular: '⭐ Il più popolare'
   },
   en: {
-    nav_features: 'Features', nav_swiss: 'Swiss First', nav_pricing: 'Pricing', nav_download: 'Download',
+    nav_features: 'Features', nav_swiss: 'Swiss First', nav_privacy: 'Privacy', nav_pricing: 'Pricing', nav_download: 'Download',
     hero_badge: 'Made in Switzerland',
     hero_title: 'The baby tracker built for <em>Swiss</em> families.',
     hero_desc: 'Track feedings, sleep, diapers and growth , together with your partner, in real time. With Swiss health reminders no other app offers.',
@@ -575,7 +576,7 @@ const translations = {
     priv2_title: 'Stays on Your Device', priv2_desc: "All data lives on your iPhone and your personal iCloud. Our servers don't exist.",
     priv3_title: 'Your iCloud, Your Rules', priv3_desc: 'Partner sync via Apple , your data, your Apple ID, your control.',
     feat_label: 'Features', feat_title: 'Everything in one place.',
-    feat_subtitle: 'Built for the exhausted, sleep-deprived, completely-in-love-with-their-baby parent. Simple by design. Smart under the hood.',
+    feat_subtitle: 'For parents running on zero sleep but endless love. Designed to be simple, so it actually gets used.',
     f1_title: 'Real-Time Partner Sync', f1_desc: "One tap. Your partner gets a link , no account, no password, no friction. Both of you see every feeding, every nap, every diaper change instantly.",
     f2_title: 'Live Feeding Timers', f2_desc: "Track breast, bottle and solid feeds with live timers. Switch sides mid-feed. See exactly when the last feed started , even if you've forgotten.",
     f3_title: 'Sleep Prediction', f3_desc: "Our algorithms learn your baby's unique sleep patterns and tell you when the next nap window opens , before the overtired meltdown hits.",
@@ -603,9 +604,9 @@ const translations = {
     pp3: 'Sleep prediction & nap windows', pp4: 'Priority support',
     pp5: 'All future features included', pp6: 'Zero data collected, always',
     story_quote: '"I built this app while I was pregnant, because every app I tried was made for American parents and didn\'t know what a U5-Untersuchung is. Now my baby is here , and so is Luni."',
-    story_cite: 'Anna , Developer, new mum, Zürich 🇨🇭',
+    story_cite: 'Anna, developer and new mum from Winti 🇨🇭',
     footer_privacy: 'Privacy Policy', footer_terms: 'Terms', footer_contact: 'Contact',
-    footer_copy: '© 2026 Luni. Made with ❤️ in Zürich.',
+    footer_copy: '© 2026 Luni. Made with ❤️ in Winti.',
     lang_label: '🇬🇧 EN',
     popular: '⭐ Most popular'
   }
@@ -643,6 +644,15 @@ function setLang(lang) {
   const titles = { de: 'Luni , Baby-Tracker für Schweizer Familien', fr: 'Luni , App bébé pour familles suisses', it: 'Luni , App neonati per famiglie svizzere', en: 'Luni , Baby Tracker for Swiss Families' };
   document.title = titles[lang];
 }
+
+// Click-based lang switcher
+document.getElementById('langBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.querySelector('.lang-switcher').classList.toggle('open');
+});
+document.addEventListener('click', function() {
+  document.querySelector('.lang-switcher').classList.remove('open');
+});
 
 // Auto-detect browser language on load
 const browserLang = navigator.language.split('-')[0];
