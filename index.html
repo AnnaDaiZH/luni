@@ -190,6 +190,10 @@
       .hero-visual { order: -1; }
       .phone-frame { width: 220px; }
       .features-grid { grid-template-columns: 1fr; }
+      .feature-card-wide { grid-column: span 1 !important; }
+      .feature-card-wide > div { flex-direction: column !important; gap: 16px !important; }
+      .pricing-cards-grid { display: grid !important; grid-template-columns: 1fr !important; max-width: 100% !important; }
+      #pricing { text-align: left; }
       .swiss-section { grid-template-columns: 1fr; }
       .story-card { grid-template-columns: 1fr; text-align: center; }
       .story-avatar { margin: 0 auto; }
@@ -329,7 +333,7 @@
       <p data-i18n="f6_desc">Jedes Ereignis wird mit dem Namen der Person gespeichert, die es eingetragen hat , du, dein Partner, die Grossmutter. Alle sind auf dem gleichen Stand.</p>
       <span class="badge free" data-i18n="badge_free">Kostenlos</span>
     </div>
-    <div class="feature-card" style="background:#F2F2F7;border-color:#D1D1D6;grid-column:span 3;">
+    <div class="feature-card feature-card-wide" style="background:#F2F2F7;border-color:#D1D1D6;grid-column:span 3;">
       <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
         <div style="font-size:40px;">🔒</div>
         <div style="flex:1;min-width:200px;">
@@ -377,7 +381,7 @@
   <p class="section-label" data-i18n="price_label">Preis</p>
   <h2 class="section-title" style="max-width:600px;margin:0 auto 16px;" data-i18n="price_title">Unterstütze eine Schweizer Mama und ihr Baby.</h2>
   <p class="section-subtitle" style="margin:0 auto 56px;" data-i18n="price_subtitle">Für den Preis eines Kaffees und eines Gipfelis , einmalig, für immer.<br/>Kein Abo. Keine Tricks. Keine Datenweitergabe. Nie.</p>
-  <div style="display:inline-grid;grid-template-columns:1fr 1fr;gap:24px;max-width:720px;text-align:left;">
+  <div class="pricing-cards-grid" style="display:inline-grid;grid-template-columns:1fr 1fr;gap:24px;max-width:720px;text-align:left;width:100%;">
     <div class="pricing-card">
       <p class="pricing-tier" data-i18n="tier_free">Kostenlos</p>
       <p class="pricing-price">CHF <span>0</span></p>
@@ -414,7 +418,7 @@
   <div class="story-card">
     <div class="story-avatar">🤱</div>
     <div class="story-text">
-      <blockquote data-i18n="story_quote">"Ich habe diese App gebaut, als ich schwanger war, weil jede App, die ich probiert habe, für amerikanische Eltern gemacht wurde und nicht wusste, was eine U5-Untersuchung ist. Jetzt ist mein Baby da , und Luni auch."</blockquote>
+      <blockquote data-i18n="story_quote">"Ich habe diese App gebaut, als ich schwanger war — weil jede App, die ich probiert habe, für Nordamerika gemacht wurde und nicht auf die Bedürfnisse hiesiger Eltern mit unserem Gesundheitssystem eingeht. Dafür gibts jetzt Luni. Von einer Schweizer Mama, für hiesige Eltern."</blockquote>
       <cite data-i18n="story_cite">Anna, Entwicklerin und frischgebackene Mama aus Winti 🇨🇭</cite>
     </div>
   </div>
@@ -475,7 +479,7 @@ const translations = {
     pp1: 'Alles aus Kostenlos', pp2: 'Alle 41+ Schweizer Gesundheitserinnerungen',
     pp3: 'Schlafvorhersage & Schlaffenster', pp4: 'Priority-Support',
     pp5: 'Alle künftigen Funktionen inklusive', pp6: 'Null Daten gesammelt, immer',
-    story_quote: '"Ich habe diese App gebaut, als ich schwanger war, weil jede App, die ich probiert habe, für amerikanische Eltern gemacht wurde und nicht wusste, was eine U5-Untersuchung ist. Jetzt ist mein Baby da , und Luni auch."',
+    story_quote: '"Ich habe diese App gebaut, als ich schwanger war — weil jede App, die ich probiert habe, für Nordamerika gemacht wurde und nicht auf die Bedürfnisse hiesiger Eltern mit unserem Gesundheitssystem eingeht. Dafür gibts jetzt Luni. Von einer Schweizer Mama, für hiesige Eltern."',
     story_cite: 'Anna, Entwicklerin und frischgebackene Mama aus Winti 🇨🇭',
     footer_privacy: 'Datenschutz', footer_terms: 'AGB', footer_contact: 'Kontakt',
     footer_copy: '© 2026 Luni. Mit ❤️ in Winti gemacht.',
