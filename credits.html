@@ -25,6 +25,8 @@
     .credit-card { background:white; border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin:16px 0; display:flex; gap:20px; align-items:center; }
     .credit-card .icon-preview { width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#F5C842 0%,#E8845A 100%); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
     .credit-card .icon-preview img { width:56%; height:56%; filter:brightness(0) invert(1); }
+    .credit-card .icon-preview.app-logo { background:transparent; border-radius:14px; }
+    .credit-card .icon-preview.app-logo img { width:100%; height:100%; filter:none; border-radius:14px; }
     .credit-card .credit-text { flex:1; font-size:15px; }
     .credit-card .credit-text strong { color:var(--ink); }
     .credit-card .credit-meta { font-size:13px; color:var(--ink-muted); margin-top:4px; }
@@ -39,6 +41,14 @@
 
   <h2>Icons</h2>
   <p>Icons used on this site are credited below. Each entry lists the title, author, source, license, and any modifications we made.</p>
+
+  <div class="credit-card">
+    <div class="icon-preview app-logo"><img src="icons/app-icon.png" alt="Luni app icon" /></div>
+    <div class="credit-text">
+      <strong>Luni app icon / site logo</strong> — based on <strong>"baby dream"</strong> by Delwar Hossain from <a href="https://thenounproject.com/browse/icons/term/baby-dream/" target="_blank" rel="noopener" title="baby dream Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a>)
+      <div class="credit-meta">Modifications: color change (black to white), custom gold background, iOS squircle mask and resizing. Used as the Luni app icon and as the site logo in the navigation and footer.</div>
+    </div>
+  </div>
 
   <div class="credit-card">
     <div class="icon-preview"><img src="icons/family.svg" alt="" /></div>
