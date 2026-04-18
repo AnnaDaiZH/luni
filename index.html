@@ -113,16 +113,27 @@
     .watch-crown { position: absolute; top: 30%; right: -6px; width: 6px; height: 28px; background: linear-gradient(90deg, #3A3A3C 0%, #4A4A4C 50%, #3A3A3C 100%); border-radius: 0 3px 3px 0; z-index: 4; box-shadow: 2px 0 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); }
 
     /* SCREENSHOTS */
-    .screenshots { padding: 0 24px 80px; overflow: hidden; }
-    .screenshots-inner { max-width: 1100px; margin: 0 auto; }
+    .screenshots { padding: 0 0 80px; overflow: hidden; }
+    .screenshots-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
     .screenshots-label { text-align: center; font-size: 13px; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
-    .screenshots-row { display: flex; gap: 20px; justify-content: center; }
-    .screenshot-thumb { width: 160px; flex-shrink: 0; background: var(--ink); border-radius: 28px; padding: 6px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); }
+    .screenshots-row { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 0 24px 16px; scrollbar-width: none; justify-content: center; }
+    .screenshots-row::-webkit-scrollbar { display: none; }
+    .screenshot-thumb { width: 160px; min-width: 130px; flex-shrink: 1; background: var(--ink); border-radius: 28px; padding: 6px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); cursor: pointer; transition: transform 0.2s; scroll-snap-align: center; }
+    .screenshot-thumb:hover { transform: scale(1.04); }
     .screenshot-thumb img { width: 100%; border-radius: 22px; display: block; aspect-ratio: 9/19.5; object-fit: cover; }
     .thumb-placeholder { aspect-ratio: 9/19.5; border-radius: 22px; background: linear-gradient(145deg, #F2F2F7, #E5E5EA); display: flex; align-items: center; justify-content: center; font-size: 28px; }
-    .screenshot-thumb.watch { width: 100px; border-radius: 22px; align-self: center; background: linear-gradient(145deg, #3A3A3C 0%, #1C1C1E 40%, #0A0A0A 100%); box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 16px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08); }
+    .screenshot-thumb.watch { width: 100px; border-radius: 22px; align-self: center; background: linear-gradient(145deg, #3A3A3C 0%, #1C1C1E 40%, #0A0A0A 100%); box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 16px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08); position: relative; }
     .screenshot-thumb.watch img { aspect-ratio: 41/49; border-radius: 18px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
     .screenshot-thumb.watch .thumb-placeholder { aspect-ratio: 41/49; border-radius: 18px; background: linear-gradient(145deg, #1A1A1A, #2A2A2A); color: white; }
+    .screenshot-thumb.watch .watch-band-sm { position: absolute; left: 50%; transform: translateX(-50%); width: 60%; z-index: -1; }
+    .screenshot-thumb.watch .watch-band-sm.top { bottom: calc(100% - 8px); height: 48px; border-radius: 10px 10px 4px 4px; background: linear-gradient(180deg, #2A2A2C 0%, #1C1C1E 50%, #252527 100%); box-shadow: 0 -3px 8px rgba(0,0,0,0.25); }
+    .screenshot-thumb.watch .watch-band-sm.bottom { top: calc(100% - 8px); height: 48px; border-radius: 4px 4px 10px 10px; background: linear-gradient(180deg, #252527 0%, #1C1C1E 50%, #2A2A2C 100%); box-shadow: 0 3px 8px rgba(0,0,0,0.25); }
+    .screenshot-thumb.watch .watch-crown-sm { position: absolute; top: 30%; right: -4px; width: 4px; height: 18px; background: linear-gradient(90deg, #3A3A3C 0%, #4A4A4C 50%, #3A3A3C 100%); border-radius: 0 2px 2px 0; z-index: 4; box-shadow: 1px 0 3px rgba(0,0,0,0.25); }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); justify-content: center; align-items: center; cursor: zoom-out; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-height: 90vh; max-width: 90vw; border-radius: 20px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); object-fit: contain; }
 
     /* SECTIONS */
     section { max-width: 1100px; margin: 0 auto; padding: 0 24px 100px; }
@@ -182,7 +193,7 @@
     .about-photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--moon) 0%, var(--accent) 100%); display: flex; align-items: center; justify-content: center; font-size: 48px; }
     .about-intro { font-size: 22px; font-weight: 700; line-height: 1.4; letter-spacing: -0.5px; }
     .about-intro span { color: var(--ink-soft); font-weight: 500; font-size: 16px; display: block; margin-top: 6px; }
-    .about-body { font-size: 16px; color: var(--ink-soft); line-height: 1.8; max-width: 680px; }
+    .about-body { font-size: 16px; color: var(--ink-soft); line-height: 1.8; }
     .about-body p { margin-bottom: 16px; }
     .about-links { display: flex; gap: 16px; margin-top: 24px; }
     .about-links a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none; padding: 8px 16px; border: 1px solid var(--border); border-radius: 50px; transition: all 0.2s; }
@@ -231,7 +242,7 @@
       .about-photo { margin: 0 auto; }
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
       .nav-links li:not(:last-child):not(.lang-switcher) { display: none; }
-      .screenshots-row .screenshot-thumb:nth-child(n+4) { display: none; }
+      .screenshot-thumb { width: 140px; }
       .privacy-grid { grid-template-columns: 1fr !important; }
     }
   </style>
@@ -257,7 +268,7 @@
           <div class="lang-option" onclick="setLang('en')">🇬🇧 English</div>
         </div>
       </li>
-      <li><a href="https://apps.apple.com" class="nav-cta" data-i18n="nav_download">Im App Store laden</a></li>
+      <li><a href="https://apps.apple.com/app/id6761795775" class="nav-cta" data-i18n="nav_download">Im App Store laden</a></li>
     </ul>
   </div>
 </nav>
@@ -269,7 +280,7 @@
     <h1 data-i18n="hero_title">Der Baby-Tracker<br/>für <em>beide</em> Eltern.</h1>
     <p data-i18n="hero_desc">Stillzeiten, Schlaf, Windeln und Wachstum festhalten, gemeinsam mit deinem Partner, in Echtzeit. Auf iPhone und Apple Watch. Mit Datenschutz als Grundsatz, entwickelt in der Schweiz, für Familien in Europa und auf der ganzen Welt.</p>
     <div class="hero-actions">
-      <a href="https://apps.apple.com" class="btn-primary">
+      <a href="https://apps.apple.com/app/id6761795775" class="btn-primary">
         <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <span data-i18n="hero_cta">Im App Store laden</span>
       </a>
@@ -301,14 +312,25 @@
   <div class="screenshots-inner">
     <p class="screenshots-label" data-i18n="screenshots_label">Alles, was deine Familie braucht</p>
     <div class="screenshots-row">
-      <div class="screenshot-thumb"><img src="screenshots/insights_sleep_v1.png" alt="Schlafvorhersage" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>😴</div>'" /></div>
-      <div class="screenshot-thumb"><img src="screenshots/insihgts_growth_v1.png" alt="WHO-Wachstumskurven" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>📈</div>'" /></div>
-      <div class="screenshot-thumb"><img src="screenshots/insights_feeding_v1.png" alt="Stillzeiten-Insights" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>🍼</div>'" /></div>
-      <div class="screenshot-thumb"><img src="screenshots/history_v1.png" alt="Tagesverlauf" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>📝</div>'" /></div>
-      <div class="screenshot-thumb"><img src="screenshots/Lock_Screen_liveactivity_feed.png" alt="Live Activity" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>🔔</div>'" /></div>
-      <div class="screenshot-thumb watch"><img src="screenshots/watch_log_v1.PNG" alt="Apple Watch" onerror="this.outerHTML='<div class=\'thumb-placeholder\'>⌚</div>'" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/insights_sleep_v1.png" alt="Schlafvorhersage" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/insihgts_growth_v1.png" alt="WHO-Wachstumskurven" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/insights_feeding_v1.png" alt="Stillzeiten-Insights" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/log_feed_v1.png" alt="Stillen loggen" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/history_v1.png" alt="Tagesverlauf" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/Lock_Screen_liveactivity_feed.png" alt="Live Activity" /></div>
+      <div class="screenshot-thumb watch" onclick="openLightbox(this)">
+        <div class="watch-band-sm top"></div>
+        <img src="screenshots/watch_log_v1.PNG" alt="Apple Watch" />
+        <div class="watch-band-sm bottom"></div>
+        <div class="watch-crown-sm"></div>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="" />
 </div>
 
 <!-- PRIVACY BANNER -->
@@ -430,7 +452,7 @@
         <li class="reminder-item"><span class="lock">🔒</span> <span data-i18n="r6">Hörtestbefund</span></li>
         <li class="reminder-item"><span class="lock">🔒</span> <span data-i18n="r7">+ 38 weitere Erinnerungen…</span></li>
       </ul>
-      <a href="https://apps.apple.com" class="reminder-more" data-i18n="swiss_unlock" style="display:block;text-decoration:none;">Alle 41+ Erinnerungen freischalten, CHF 10</a>
+      <a href="https://apps.apple.com/app/id6761795775" class="reminder-more" data-i18n="swiss_unlock" style="display:block;text-decoration:none;">Alle 41+ Erinnerungen freischalten, CHF 10</a>
     </div>
   </div>
 </section>
@@ -455,6 +477,7 @@
         <li data-i18n="pf5">Zeitstrahl &amp; Verlauf</li>
         <li data-i18n="pf6">Mehrere Babys</li>
         <li data-i18n="pf9">Push-Benachrichtigungen</li>
+        <li data-i18n="pp6">Null Daten gesammelt</li>
         <li class="muted" data-i18n="pf7">Alle 41+ Erinnerungen</li>
         <li class="muted" data-i18n="pf8">Schlaf- &amp; Schlaffenster-Einblicke</li>
         <li class="muted" data-i18n="pf10">Apple Watch App</li>
@@ -471,7 +494,6 @@
         <li data-i18n="pp7">Apple Watch App</li>
         <li data-i18n="pp9">Familienfreigabe via Apple</li>
         <li data-i18n="pp5">Alle künftigen Funktionen inklusive</li>
-        <li data-i18n="pp6">Null Daten gesammelt, immer</li>
       </ul>
     </div>
   </div>
@@ -486,16 +508,16 @@
       <div class="about-photo">
         <img src="images/IMG_8174.jpeg" alt="Anna & Maurin" onerror="this.outerHTML='<div class=\'about-photo-placeholder\'>👪</div>'" />
       </div>
-      <div class="about-intro" data-i18n="about_intro">Anna &amp; Maurin<span>Robotik-Ingenieure, Eltern, Outdoor-Enthusiasten — Winterthur 🇨🇭</span></div>
+      <div class="about-intro" data-i18n="about_intro">Anna &amp; Maurin<span>Robotik-Ingenieure, Eltern, Outdoor-Enthusiasten, Winterthur 🇨🇭</span></div>
     </div>
     <div class="about-body">
-      <p data-i18n="about_p1">Anna ist Software-Entwicklerin in der Robotik, Maurin Field Engineer im selben Bereich. In unserer Freizeit sind wir draussen unterwegs, kochen gern und haben immer irgendein DIY-Projekt am Laufen. Als unsere Tochter auf die Welt kam, haben wir Luni gestartet — weil wir einen besseren Baby-Tracker wollten, bei dem keine Firma mit den Daten eures Babys Geld verdient.</p>
-      <p data-i18n="about_p2">Luni ist aus unserem eigenen Alltag als frischgebackene Eltern entstanden. Jede App, die wir ausprobiert haben, war für andere Gesundheitssysteme gemacht, hat Daten gesammelt oder wollte ein Abo verkaufen. Das passte nicht zu uns. Wir wollten etwas für den europäischen Markt und vor allem für die Schweizer Gemeinschaft — mit echtem Datenschutz, weil wir eure Daten schlicht nicht brauchen.</p>
+      <p data-i18n="about_p1">Anna ist Software-Entwicklerin in der Robotik, Maurin Field Engineer im selben Bereich. In unserer Freizeit sind wir draussen unterwegs, kochen gern und haben immer irgendein DIY-Projekt am Laufen. Als unsere Tochter auf die Welt kam, haben wir Luni gestartet, weil wir einen besseren Baby-Tracker wollten, bei dem keine Firma mit den Daten eures Babys Geld verdient.</p>
+      <p data-i18n="about_p2">Luni ist aus unserem eigenen Alltag als frischgebackene Eltern entstanden. Jede App, die wir ausprobiert haben, war für andere Gesundheitssysteme gemacht, hat Daten gesammelt oder wollte ein Abo verkaufen. Das passte nicht zu uns. Wir wollten etwas für den europäischen Markt und vor allem für die Schweizer Gemeinschaft, mit echtem Datenschutz, weil wir eure Daten schlicht nicht brauchen.</p>
       <p data-i18n="about_p3">Ein Baby grosszuziehen ist anspruchsvoll genug. Luni soll einfach ein kleines, ehrliches Werkzeug sein, das jungen Eltern den Alltag ein wenig erleichtert.</p>
     </div>
     <div class="about-links">
-      <a href="https://www.linkedin.com/in/anna-dai-robotics/" target="_blank" rel="noopener">Anna — LinkedIn</a>
-      <a href="https://lumics.github.io" target="_blank" rel="noopener">Maurin — Website</a>
+      <a href="https://www.linkedin.com/in/anna-dai-robotics/" target="_blank" rel="noopener">Anna auf LinkedIn</a>
+      <a href="https://lumics.github.io" target="_blank" rel="noopener">Maurin Website</a>
     </div>
   </div>
 </section>
@@ -560,12 +582,12 @@ const translations = {
     tier_premium: 'Luni Pro', premium_desc: 'Einmalige Zahlung. Für immer deins. Kein Abo.',
     pp1: 'Alles aus Kostenlos', pp2: 'Alle 41+ Schweizer Gesundheitserinnerungen',
     pp3: 'Schlafvorhersage & Schlaffenster',
-    pp5: 'Alle künftigen Funktionen inklusive', pp6: 'Null Daten gesammelt, immer',
+    pp5: 'Alle künftigen Funktionen inklusive', pp6: 'Null Daten gesammelt',
     pp7: 'Apple Watch App', pp8: 'Push-Benachrichtigungen & Erinnerungen', pp9: 'Familienfreigabe via Apple',
     about_label: 'Über uns', about_title: 'Wer steckt hinter Luni?',
-    about_intro: 'Anna &amp; Maurin<span>Robotik-Ingenieure, Eltern, Outdoor-Enthusiasten — Winterthur 🇨🇭</span>',
-    about_p1: 'Anna ist Software-Entwicklerin in der Robotik, Maurin Field Engineer im selben Bereich. In unserer Freizeit sind wir draussen unterwegs, kochen gern und haben immer irgendein DIY-Projekt am Laufen. Als unsere Tochter auf die Welt kam, haben wir Luni gestartet — weil wir einen besseren Baby-Tracker wollten, bei dem keine Firma mit den Daten eures Babys Geld verdient.',
-    about_p2: 'Luni ist aus unserem eigenen Alltag als frischgebackene Eltern entstanden. Jede App, die wir ausprobiert haben, war für andere Gesundheitssysteme gemacht, hat Daten gesammelt oder wollte ein Abo verkaufen. Das passte nicht zu uns. Wir wollten etwas für den europäischen Markt und vor allem für die Schweizer Gemeinschaft — mit echtem Datenschutz, weil wir eure Daten schlicht nicht brauchen.',
+    about_intro: 'Anna &amp; Maurin<span>Robotik-Ingenieure, Eltern, Outdoor-Enthusiasten, Winterthur 🇨🇭</span>',
+    about_p1: 'Anna ist Software-Entwicklerin in der Robotik, Maurin Field Engineer im selben Bereich. In unserer Freizeit sind wir draussen unterwegs, kochen gern und haben immer irgendein DIY-Projekt am Laufen. Als unsere Tochter auf die Welt kam, haben wir Luni gestartet, weil wir einen besseren Baby-Tracker wollten, bei dem keine Firma mit den Daten eures Babys Geld verdient.',
+    about_p2: 'Luni ist aus unserem eigenen Alltag als frischgebackene Eltern entstanden. Jede App, die wir ausprobiert haben, war für andere Gesundheitssysteme gemacht, hat Daten gesammelt oder wollte ein Abo verkaufen. Das passte nicht zu uns. Wir wollten etwas für den europäischen Markt und vor allem für die Schweizer Gemeinschaft, mit echtem Datenschutz, weil wir eure Daten schlicht nicht brauchen.',
     about_p3: 'Ein Baby grosszuziehen ist anspruchsvoll genug. Luni soll einfach ein kleines, ehrliches Werkzeug sein, das jungen Eltern den Alltag ein wenig erleichtert.',
     footer_privacy: 'Datenschutz', footer_terms: 'AGB', footer_contact: 'Kontakt', footer_credits: 'Credits',
     footer_copy: '© 2026 Luni. Mit ❤️ in Winti gemacht.',
@@ -615,12 +637,12 @@ const translations = {
     tier_premium: 'Luni Pro', premium_desc: 'Paiement unique. À vous pour toujours.',
     pp1: 'Tout du gratuit', pp2: 'Tous les 41+ rappels santé suisses',
     pp3: 'Prédiction & fenêtres de sommeil',
-    pp5: 'Toutes les futures fonctionnalités incluses', pp6: 'Zéro donnée collectée, toujours',
+    pp5: 'Toutes les futures fonctionnalités incluses', pp6: 'Zéro donnée collectée',
     pp7: 'App Apple Watch', pp8: 'Notifications push & rappels', pp9: 'Partage familial via Apple',
     about_label: 'À propos', about_title: 'Qui se cache derrière Luni ?',
-    about_intro: 'Anna &amp; Maurin<span>Ingénieurs en robotique, parents, amateurs de plein air — Winterthour 🇨🇭</span>',
-    about_p1: "Anna est développeuse en robotique, Maurin ingénieur terrain dans le même domaine. Pendant notre temps libre, nous aimons le plein air, la cuisine et nous avons toujours un projet DIY en cours. Quand notre fille est née, nous avons lancé Luni — parce que nous voulions un meilleur baby tracker, sans qu'une entreprise fasse de l'argent avec les données de votre bébé.",
-    about_p2: "Luni est né de notre propre quotidien de jeunes parents. Chaque app que nous avons essayée était conçue pour d'autres systèmes de santé, collectait des données ou voulait vendre un abonnement. Ça ne nous convenait pas. Nous voulions quelque chose pour le marché européen et surtout pour la communauté suisse — avec une vraie protection des données, parce que vos données ne nous intéressent tout simplement pas.",
+    about_intro: 'Anna &amp; Maurin<span>Ingénieurs en robotique, parents, amateurs de plein air, Winterthour 🇨🇭</span>',
+    about_p1: "Anna est développeuse en robotique, Maurin ingénieur terrain dans le même domaine. Pendant notre temps libre, nous aimons le plein air, la cuisine et nous avons toujours un projet DIY en cours. Quand notre fille est née, nous avons lancé Luni, parce que nous voulions un meilleur baby tracker, sans qu'une entreprise fasse de l'argent avec les données de votre bébé.",
+    about_p2: "Luni est né de notre propre quotidien de jeunes parents. Chaque app que nous avons essayée était conçue pour d'autres systèmes de santé, collectait des données ou voulait vendre un abonnement. Ça ne nous convenait pas. Nous voulions quelque chose pour le marché européen et surtout pour la communauté suisse, avec une vraie protection des données, parce que vos données ne nous intéressent tout simplement pas.",
     about_p3: "Élever un bébé est déjà assez exigeant. Luni veut simplement être un petit outil honnête qui facilite un peu le quotidien des jeunes parents.",
     footer_privacy: 'Confidentialité', footer_terms: 'CGU', footer_contact: 'Contact', footer_credits: 'Crédits',
     footer_copy: '© 2026 Luni. Fait avec ❤️ à Winti.',
@@ -670,12 +692,12 @@ const translations = {
     tier_premium: 'Luni Pro', premium_desc: 'Pagamento unico. Tuo per sempre. Nessun abbonamento.',
     pp1: 'Tutto dal gratuito', pp2: 'Tutti i 41+ promemoria sanitari svizzeri',
     pp3: 'Previsione & finestre di sonno',
-    pp5: 'Tutte le future funzionalità incluse', pp6: 'Zero dati raccolti, sempre',
+    pp5: 'Tutte le future funzionalità incluse', pp6: 'Zero dati raccolti',
     pp7: 'App Apple Watch', pp8: 'Notifiche push & promemoria', pp9: 'Condivisione in famiglia via Apple',
     about_label: 'Chi siamo', about_title: 'Chi c\'è dietro Luni?',
-    about_intro: 'Anna &amp; Maurin<span>Ingegneri in robotica, genitori, appassionati di outdoor — Winterthur 🇨🇭</span>',
-    about_p1: 'Anna è sviluppatrice software in robotica, Maurin ingegnere sul campo nello stesso settore. Nel tempo libero amiamo stare all\'aria aperta, cucinare e abbiamo sempre qualche progetto DIY in corso. Quando è nata nostra figlia, abbiamo avviato Luni — perché volevamo un baby tracker migliore, senza che qualche azienda guadagni con i dati del vostro bambino.',
-    about_p2: 'Luni è nato dalla nostra quotidianità di neo-genitori. Ogni app che abbiamo provato era pensata per altri sistemi sanitari, raccoglieva dati o voleva vendere un abbonamento. Non faceva per noi. Volevamo qualcosa per il mercato europeo e soprattutto per la comunità svizzera — con una vera protezione dei dati, perché i vostri dati semplicemente non ci interessano.',
+    about_intro: 'Anna &amp; Maurin<span>Ingegneri in robotica, genitori, appassionati di outdoor, Winterthur 🇨🇭</span>',
+    about_p1: 'Anna è sviluppatrice software in robotica, Maurin ingegnere sul campo nello stesso settore. Nel tempo libero amiamo stare all\'aria aperta, cucinare e abbiamo sempre qualche progetto DIY in corso. Quando è nata nostra figlia, abbiamo avviato Luni, perché volevamo un baby tracker migliore, senza che qualche azienda guadagni con i dati del vostro bambino.',
+    about_p2: 'Luni è nato dalla nostra quotidianità di neo-genitori. Ogni app che abbiamo provato era pensata per altri sistemi sanitari, raccoglieva dati o voleva vendere un abbonamento. Non faceva per noi. Volevamo qualcosa per il mercato europeo e soprattutto per la comunità svizzera, con una vera protezione dei dati, perché i vostri dati semplicemente non ci interessano.',
     about_p3: 'Crescere un bambino è già abbastanza impegnativo. Luni vuole essere semplicemente un piccolo strumento onesto che rende un po\' più facile la vita quotidiana dei giovani genitori.',
     footer_privacy: 'Privacy', footer_terms: 'Termini', footer_contact: 'Contatto', footer_credits: 'Crediti',
     footer_copy: '© 2026 Luni. Fatto con ❤️ a Winti.',
@@ -725,12 +747,12 @@ const translations = {
     tier_premium: 'Luni Pro', premium_desc: 'One-time payment. Yours forever. No subscription.',
     pp1: 'Everything in Free', pp2: 'All 41+ Swiss health reminders',
     pp3: 'Sleep prediction & nap windows',
-    pp5: 'All future features included', pp6: 'Zero data collected, always',
+    pp5: 'All future features included', pp6: 'Zero data collected',
     pp7: 'Apple Watch app', pp8: 'Push notifications & reminders', pp9: 'Family Sharing via Apple',
     about_label: 'About us', about_title: 'Who\'s behind Luni?',
-    about_intro: 'Anna &amp; Maurin<span>Robotics engineers, parents, outdoor enthusiasts — Winterthur 🇨🇭</span>',
-    about_p1: 'Anna is a software developer in robotics, Maurin a field engineer in the same industry. In our free time we love being outdoors, cooking, and we always have some DIY project going on. When our daughter was born, we started Luni — because we wanted a better baby tracker where no company makes money off your baby\'s data.',
-    about_p2: 'Luni was born from our own experience as new parents. Every app we tried was made for other health systems, collected data, or wanted to sell a subscription. That didn\'t sit right with us. We wanted something for the European market and especially for the Swiss community — with real privacy, because we simply don\'t need your data.',
+    about_intro: 'Anna &amp; Maurin<span>Robotics engineers, parents, outdoor enthusiasts, Winterthur 🇨🇭</span>',
+    about_p1: 'Anna is a software developer in robotics, Maurin a field engineer in the same industry. In our free time we love being outdoors, cooking, and we always have some DIY project going on. When our daughter was born, we started Luni, because we wanted a better baby tracker where no company makes money off your baby\'s data.',
+    about_p2: 'Luni was born from our own experience as new parents. Every app we tried was made for other health systems, collected data, or wanted to sell a subscription. That didn\'t sit right with us. We wanted something for the European market and especially for the Swiss community, with real privacy, because we simply don\'t need your data.',
     about_p3: 'Raising a baby is hard enough as it is. Luni is meant to be a small, honest tool that makes everyday life a little easier for young parents.',
     footer_privacy: 'Privacy Policy', footer_terms: 'Terms', footer_contact: 'Contact', footer_credits: 'Credits',
     footer_copy: '© 2026 Luni. Made with ❤️ in Winti.',
@@ -788,6 +810,20 @@ if (['de', 'fr', 'it', 'en'].includes(browserLang)) {
 } else {
   setLang('de');
 }
+
+// Lightbox
+function openLightbox(thumb) {
+  var img = thumb.querySelector('img');
+  if (!img) return;
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
