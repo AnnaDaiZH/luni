@@ -298,7 +298,7 @@
     <div class="watch-frame">
       <div class="watch-band top"></div>
       <div class="watch-screen">
-        <img src="screenshots/watch_feed_v1.PNG" alt="Luni on Apple Watch" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <img src="screenshots/watch_home_v1.PNG" alt="Luni on Apple Watch" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
         <div class="watch-placeholder" style="display:none">⌚</div>
       </div>
       <div class="watch-band bottom"></div>
@@ -312,7 +312,7 @@
   <div class="screenshots-inner">
     <p class="screenshots-label" data-i18n="screenshots_label">Alles, was deine Familie braucht</p>
     <div class="screenshots-row">
-      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/insights_sleep_v1.png" alt="Schlafvorhersage" /></div>
+      <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/sleep_insights_v1_23.jpeg" alt="Schlafvorhersage" /></div>
       <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/insihgts_growth_v1.png" alt="WHO-Wachstumskurven" /></div>
       <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/insights_feeding_v1.png" alt="Stillzeiten-Insights" /></div>
       <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/log_feed_v1.png" alt="Stillen loggen" /></div>
@@ -320,7 +320,7 @@
       <div class="screenshot-thumb" onclick="openLightbox(this)"><img src="screenshots/Lock_Screen_liveactivity_feed.png" alt="Live Activity" /></div>
       <div class="screenshot-thumb watch" onclick="openLightbox(this)">
         <div class="watch-band-sm top"></div>
-        <img src="screenshots/watch_log_v1.PNG" alt="Apple Watch" />
+        <img src="screenshots/watch_feed_v1.PNG" alt="Apple Watch" />
         <div class="watch-band-sm bottom"></div>
         <div class="watch-crown-sm"></div>
       </div>
@@ -344,7 +344,7 @@
     <div>
       <div style="font-size:32px;margin-bottom:12px;">📱</div>
       <div style="font-weight:700;color:#1A1A1A;font-size:16px;margin-bottom:6px;" data-i18n="priv2_title">Bleibt auf deinem Gerät</div>
-      <div style="color:rgba(0, 0, 0, 0.6);font-size:14px;line-height:1.5;" data-i18n="priv2_desc">Alle Daten bleiben auf deinem iPhone und deinem persönlichen iCloud. Unsere Server existieren nicht.</div>
+      <div style="color:rgba(0, 0, 0, 0.6);font-size:14px;line-height:1.5;" data-i18n="priv2_desc">Alle Daten bleiben auf deinem iPhone und in deiner persönlichen iCloud, von Apple verschlüsselt, von dir kontrolliert. Unsere Server existieren nicht.</div>
     </div>
     <div>
       <div style="font-size:32px;margin-bottom:12px;">☁️</div>
@@ -418,8 +418,8 @@
       <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
         <div style="font-size:40px;">🔒</div>
         <div style="flex:1;min-width:200px;">
-          <h3 style="font-size:20px;margin-bottom:8px;" data-i18n="priv_card_title">Datenschutz von Anfang an</h3>
-          <p style="margin:0;color:var(--ink-soft);" data-i18n="priv_card_desc">Kein Konto erforderlich. Keine Analyse. Keine Server. Die Daten deines Babys verlassen niemals dein Gerät oder dein iCloud-Konto. Wir haben Luni so entwickelt, wie wir uns das für unsere eigenen Babydaten wünschen würden, nämlich gar nicht anfassen.</p>
+          <h3 style="font-size:20px;margin-bottom:8px;" data-i18n="priv_card_title">Die Daten deines Babys gehören dir.</h3>
+          <p style="margin:0;color:var(--ink-soft);" data-i18n="priv_card_desc">Kein Konto. Kein Server. Keine Analyse. Alles bleibt auf deinem Gerät und in deiner persönlichen iCloud, von Apple verschlüsselt, von dir kontrolliert. Niemand sonst sieht die Daten deines Babys. Nicht einmal wir.</p>
         </div>
         <a href="privacy.html" style="white-space:nowrap;background:var(--ink);color:white;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;" data-i18n="priv_card_link">Datenschutzerklärung lesen →</a>
       </div>
@@ -547,8 +547,8 @@ const translations = {
     hero_cta: 'Im App Store laden', hero_note: 'Kostenlos herunterladen.',
     hero_privacy_note: 'Keine Datenweitergabe. Alles bleibt auf deinem Gerät.',
     screenshots_label: 'Alles, was deine Familie braucht',
-    priv1_title: 'Keine Datenweitergabe', priv1_desc: 'Wir sammeln nichts. Keine Analyse, kein Tracking, keine Konten.',
-    priv2_title: 'Bleibt auf deinem Gerät', priv2_desc: 'Alle Daten bleiben auf deinem iPhone und deinem persönlichen iCloud. Unsere Server existieren nicht.',
+    priv1_title: 'Keine Datenweitergabe', priv1_desc: 'Wir sammeln nichts. Keine Analyse, kein Tracking, keine Konten. Niemand sieht die Daten deines Babys. Nicht einmal wir.',
+    priv2_title: 'Bleibt auf deinem Gerät', priv2_desc: 'Alle Daten bleiben auf deinem iPhone und in deiner persönlichen iCloud, von Apple verschlüsselt, von dir kontrolliert. Unsere Server existieren nicht.',
     priv3_title: 'Deine iCloud, deine Regeln', priv3_desc: 'Partner-Sync via Apple, deine Daten, deine Apple-ID, deine Kontrolle.',
     feat_label: 'Funktionen', feat_title: 'Alles an einem Ort.',
     feat_subtitle: 'Für alle, die gerade kaum schlafen - aber ihr Baby nicht missen möchten. Klar und einfach zu bedienen.',
@@ -562,8 +562,8 @@ const translations = {
     f8_title: 'Push-Benachrichtigungen', f8_desc: 'Timer fürs Stillen und den Schlaf laufen im Hintergrund weiter. Und Luni meldet sich, wenn ein Termin oder eine Impfung ansteht, oder wenn es so aussieht, als hättest du vergessen, eine Mahlzeit zu loggen.',
     f9_title: 'Live Activity', f9_desc: 'Wenn ein Timer läuft, siehst du ihn direkt auf dem Sperrbildschirm und in der Dynamic Island. So hast du die verstrichene Zeit immer im Blick, auch wenn die App geschlossen ist.',
     badge_free: 'Kostenlos', badge_premium: 'Luni Pro',
-    priv_card_title: 'Datenschutz von Anfang an',
-    priv_card_desc: 'Kein Konto erforderlich. Keine Analyse. Keine Server. Die Daten deines Babys verlassen niemals dein Gerät oder dein iCloud-Konto.',
+    priv_card_title: 'Die Daten deines Babys gehören dir.',
+    priv_card_desc: 'Kein Konto. Kein Server. Keine Analyse. Alles bleibt auf deinem Gerät und in deiner persönlichen iCloud, von Apple verschlüsselt, von dir kontrolliert. Niemand sonst sieht die Daten deines Babys. Nicht einmal wir.',
     priv_card_link: 'Datenschutzerklärung lesen →',
     swiss_label: 'Entwickelt für die Schweiz', swiss_title: 'Kein anderes App macht das für Schweizer Familien.',
     swiss_desc: 'Alle Baby-Tracker, die wir gefunden haben, wurden für andere Gesundheitssysteme entwickelt, zum Beispiel das der USA, und sind nicht an die Schweiz oder andere europäische Länder angepasst.',
@@ -602,8 +602,8 @@ const translations = {
     hero_cta: 'Télécharger sur l\'App Store', hero_note: 'Téléchargement gratuit.',
     hero_privacy_note: 'Aucune collecte de données. Tout reste sur votre appareil.',
     screenshots_label: 'Tout ce dont votre famille a besoin',
-    priv1_title: 'Zéro collecte de données', priv1_desc: 'Nous ne collectons rien. Pas d\'analyse, pas de suivi, pas de compte.',
-    priv2_title: 'Reste sur votre appareil', priv2_desc: 'Toutes les données restent sur votre iPhone et votre iCloud personnel. Nos serveurs n\'existent pas.',
+    priv1_title: 'Zéro collecte de données', priv1_desc: 'Nous ne collectons rien. Pas d\'analyse, pas de suivi, pas de compte. Personne ne voit les données de votre bébé. Pas même nous.',
+    priv2_title: 'Reste sur votre appareil', priv2_desc: 'Toutes les données restent sur votre iPhone et dans votre iCloud personnel, chiffrées par Apple, contrôlées par vous. Nos serveurs n\'existent pas.',
     priv3_title: 'Votre iCloud, vos règles', priv3_desc: 'Sync partenaire via Apple, vos données, votre Apple ID, votre contrôle.',
     feat_label: 'Fonctionnalités', feat_title: 'Tout en un seul endroit.',
     feat_subtitle: 'Pour les parents qui ne dorment plus, mais qui adorent leur bébé. Simple à utiliser, même à 3h du matin.',
@@ -617,8 +617,8 @@ const translations = {
     f8_title: 'Notifications push', f8_desc: "Les minuteries d'allaitement et de sommeil continuent en arrière-plan. Et Luni vous fait signe quand un rendez-vous ou une vaccination approche, ou s'il semble que vous ayez oublié d'enregistrer un repas.",
     f9_title: 'Live Activity', f9_desc: "Quand une minuterie tourne, vous la voyez directement sur l'écran verrouillé et dans la Dynamic Island. Vous gardez le temps écoulé sous les yeux, même quand l'app est fermée.",
     badge_free: 'Gratuit', badge_premium: 'Luni Pro',
-    priv_card_title: 'Confidentialité by design',
-    priv_card_desc: 'Pas de compte requis. Pas d\'analyse. Pas de serveurs. Les données de votre bébé ne quittent jamais votre appareil ou votre compte iCloud.',
+    priv_card_title: 'Les données de votre bébé vous appartiennent.',
+    priv_card_desc: 'Pas de compte. Pas de serveur. Pas d\'analyse. Tout reste sur votre appareil et dans votre iCloud personnel, chiffré par Apple, contrôlé par vous. Personne d\'autre ne voit les données de votre bébé. Pas même nous.',
     priv_card_link: 'Lire notre politique de confidentialité →',
     swiss_label: 'Fait pour la Suisse', swiss_title: 'Aucune autre app ne fait ça pour les familles suisses.',
     swiss_desc: "Toutes les applications bébé que nous avons trouvées ont été conçues pour d'autres systèmes de santé, comme celui des États-Unis, et ne sont pas adaptées à la Suisse ni aux autres pays européens.",
@@ -657,8 +657,8 @@ const translations = {
     hero_cta: 'Scarica su App Store', hero_note: 'Download gratuito.',
     hero_privacy_note: 'Nessuna raccolta dati. Tutto rimane sul tuo dispositivo.',
     screenshots_label: 'Tutto ciò di cui la tua famiglia ha bisogno',
-    priv1_title: 'Zero raccolta dati', priv1_desc: 'Non raccogliamo nulla. Nessuna analisi, nessun tracciamento, nessun account.',
-    priv2_title: 'Rimane sul tuo dispositivo', priv2_desc: 'Tutti i dati rimangono sul tuo iPhone e nel tuo iCloud personale. I nostri server non esistono.',
+    priv1_title: 'Zero raccolta dati', priv1_desc: 'Non raccogliamo nulla. Nessuna analisi, nessun tracciamento, nessun account. Nessuno vede i dati del tuo bebè. Nemmeno noi.',
+    priv2_title: 'Rimane sul tuo dispositivo', priv2_desc: 'Tutti i dati rimangono sul tuo iPhone e nel tuo iCloud personale, crittografati da Apple, controllati da te. I nostri server non esistono.',
     priv3_title: 'Il tuo iCloud, le tue regole', priv3_desc: 'Sync partner via Apple, i tuoi dati, il tuo Apple ID, il tuo controllo.',
     feat_label: 'Funzionalità', feat_title: 'Tutto in un unico posto.',
     feat_subtitle: 'Per i genitori che non dormono piu, ma amano il loro bambino. Semplice, anche alle 3 di notte.',
@@ -672,8 +672,8 @@ const translations = {
     f8_title: 'Notifiche push', f8_desc: 'I timer di poppata e sonno continuano in background. E Luni ti avvisa quando si avvicina un appuntamento o una vaccinazione, o quando sembra che tu abbia dimenticato di registrare una poppata.',
     f9_title: 'Live Activity', f9_desc: 'Quando un timer è attivo, lo vedi direttamente sulla schermata di blocco e nella Dynamic Island. Così tieni il tempo trascorso sempre sott\'occhio, anche quando l\'app è chiusa.',
     badge_free: 'Gratuito', badge_premium: 'Luni Pro',
-    priv_card_title: 'Privacy by design',
-    priv_card_desc: 'Nessun account richiesto. Nessuna analisi. Nessun server. I dati del tuo bambino non lasciano mai il tuo dispositivo o il tuo account iCloud.',
+    priv_card_title: 'I dati del tuo bebè appartengono a te.',
+    priv_card_desc: 'Nessun account. Nessun server. Nessuna analisi. Tutto resta sul tuo dispositivo e nel tuo iCloud personale, crittografato da Apple, controllato da te. Nessun altro vede i dati del tuo bebè. Nemmeno noi.',
     priv_card_link: 'Leggi la nostra Privacy Policy →',
     swiss_label: 'Fatto per la Svizzera', swiss_title: 'Nessun\'altra app fa questo per le famiglie svizzere.',
     swiss_desc: 'Tutte le app per neonati che abbiamo trovato sono state sviluppate per altri sistemi sanitari, come quello degli Stati Uniti, e non sono adattate alla Svizzera o agli altri paesi europei.',
@@ -712,8 +712,8 @@ const translations = {
     hero_cta: 'Download on App Store', hero_note: 'Free to download.',
     hero_privacy_note: 'Zero data collection. Everything stays on your device.',
     screenshots_label: 'Everything your family needs',
-    priv1_title: 'Zero Data Collection', priv1_desc: 'We collect nothing. No analytics, no tracking, no accounts.',
-    priv2_title: 'Stays on Your Device', priv2_desc: "All data lives on your iPhone and your personal iCloud. Our servers don't exist.",
+    priv1_title: 'Zero Data Collection', priv1_desc: "We collect nothing. No analytics, no tracking, no accounts. No one sees your baby's data. Not even us.",
+    priv2_title: 'Stays on Your Device', priv2_desc: "All data lives on your iPhone and in your personal iCloud, encrypted by Apple, controlled by you. Our servers don't exist.",
     priv3_title: 'Your iCloud, Your Rules', priv3_desc: 'Partner sync via Apple, your data, your Apple ID, your control.',
     feat_label: 'Features', feat_title: 'Everything in one place.',
     feat_subtitle: 'For parents running on zero sleep but endless love. Designed to be simple, so it actually gets used.',
@@ -727,8 +727,8 @@ const translations = {
     f8_title: 'Push Notifications', f8_desc: 'Live timers for feeding and sleep keep running in the background. And Luni nudges you when an appointment or vaccination is coming up, or when it looks like you might have forgotten to log a feeding.',
     f9_title: 'Live Activity', f9_desc: 'When a timer is running, you see it right on the lock screen and in the Dynamic Island. So you always have the elapsed time in view, even when the app is closed.',
     badge_free: 'Free', badge_premium: 'Luni Pro',
-    priv_card_title: 'Privacy-first, by design',
-    priv_card_desc: "No account required. No analytics. No servers. Your baby's data never leaves your device or your iCloud account.",
+    priv_card_title: "Your baby's data belongs to you.",
+    priv_card_desc: "No account. No server. No analytics. Everything stays on your device and in your personal iCloud, encrypted by Apple, controlled by you. No one else sees your baby's data. Not even us.",
     priv_card_link: 'Read our Privacy Policy →',
     swiss_label: 'Built for Switzerland', swiss_title: 'No app does this for Swiss families.',
     swiss_desc: "Every baby tracker we found was developed for other health systems, such as the US, and isn't adapted to Switzerland or other European countries.",
