@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pressekit — Luni</title>
+  <meta name="description" content="Pressekit für Luni — ein datenschutzfreundlicher Baby-Tracker, in der Schweiz von einer Familie mit Neugeborenem gebaut. Logos, Screenshots, Gründerbild und Zitate." />
+  <meta property="og:title" content="Pressekit — Luni" />
+  <meta property="og:description" content="Pressematerial für Luni, ein datenschutzfreundlicher Baby-Tracker aus der Schweiz." />
+  <link rel="icon" href="icons/favicon-32.png" type="image/png" />
+  <link rel="apple-touch-icon" href="icons/app-icon-180.png" />
+  <style>
+    :root {
+      --cream: #FDFAF5;
+      --ink: #1A1A1A;
+      --ink-soft: #4A4A4A;
+      --ink-muted: #8A8A8A;
+      --moon: #F5C842;
+      --moon-soft: #FFF4C2;
+      --accent: #E8845A;
+      --accent-soft: #FFF0E8;
+      --green: #5AAF82;
+      --border: #EBEBEB;
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253, 250, 245, 0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; height: 60px; gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.3px; }
+    .nav-sep { color: var(--ink-muted); }
+    .nav-title { font-size: 15px; color: var(--ink-muted); }
+    .nav-spacer { flex: 1; }
+    .nav-back { color: var(--ink-soft); text-decoration: none; font-size: 14px; font-weight: 500; margin-right: 4px; }
+    .nav-back:hover { color: var(--ink); }
+
+    /* LANG SWITCHER */
+    .lang-switcher { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: white; border: 1px solid var(--border);
+      border-radius: 50px; padding: 6px 12px;
+      font-size: 14px; font-weight: 500; color: var(--ink-soft);
+      cursor: pointer; transition: all 0.2s; user-select: none;
+    }
+    .lang-btn:hover { border-color: var(--ink-muted); color: var(--ink); }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 4px); right: 0;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); min-width: 140px; z-index: 200;
+      padding: 4px 0;
+    }
+    .lang-switcher.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; font-size: 14px; font-weight: 500;
+      color: var(--ink-soft); cursor: pointer; transition: background 0.15s;
+    }
+    .lang-option:hover { background: var(--cream); color: var(--ink); }
+    .lang-option.active { color: var(--ink); font-weight: 700; background: var(--moon-soft); }
+
+    /* PAGE */
+    .container { max-width: 1100px; margin: 0 auto; padding: 80px 24px 100px; }
+
+    /* HERO */
+    .hero { text-align: center; margin-bottom: 80px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--moon-soft); color: #9A7A00; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 50px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(40px, 5vw, 60px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 18px; color: var(--ink-soft); line-height: 1.7; max-width: 640px; margin: 0 auto 40px; }
+    .download-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: white; padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--ink); padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 700; text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s; }
+    .btn-secondary:hover { border-color: var(--ink); }
+
+    /* SECTIONS */
+    section { margin-bottom: 64px; }
+    .section-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent); margin-bottom: 12px; }
+    .section-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 24px; }
+    .section-text { font-size: 17px; color: var(--ink-soft); line-height: 1.75; max-width: 760px; }
+
+    /* PITCH BOXES */
+    .pitch-grid { display: grid; gap: 16px; }
+    .pitch-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; }
+    .pitch-card .pitch-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); margin-bottom: 10px; }
+    .pitch-card .pitch-text { font-size: 17px; color: var(--ink); line-height: 1.7; }
+    .pitch-card.long .pitch-text { font-size: 16px; color: var(--ink-soft); }
+
+    /* FACTS TABLE */
+    .facts { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .facts-row { display: grid; grid-template-columns: 200px 1fr; padding: 18px 28px; border-bottom: 1px solid var(--border); }
+    .facts-row:last-child { border-bottom: none; }
+    .facts-key { font-size: 14px; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 0.5px; }
+    .facts-val { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+    .facts-val a { color: var(--accent); text-decoration: none; }
+    .facts-val a:hover { text-decoration: underline; }
+
+    /* FOUNDERS */
+    .founders { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
+    .founders-photo { width: 200px; height: 200px; border-radius: var(--radius-sm); overflow: hidden; background: linear-gradient(145deg, var(--moon-soft), var(--accent-soft)); display: flex; align-items: center; justify-content: center; font-size: 64px; }
+    .founders-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .founders-info h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+    .founders-info .founders-meta { font-size: 14px; color: var(--ink-muted); margin-bottom: 16px; }
+    .founders-info p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 12px; }
+    .founders-links { margin-top: 16px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .founders-links a { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 600; }
+    .founders-links a:hover { text-decoration: underline; }
+
+    /* QUOTES */
+    .quote { background: var(--moon-soft); border-left: 4px solid var(--moon); padding: 24px 28px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 16px; }
+    .quote-text { font-size: 17px; color: var(--ink); line-height: 1.65; font-style: italic; margin-bottom: 10px; }
+    .quote-author { font-size: 14px; color: var(--ink-muted); font-weight: 600; }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+    .gallery-item { background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 9/19.5; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* CONTACT */
+    .contact-card { background: var(--ink); color: white; border-radius: var(--radius); padding: 36px; text-align: center; }
+    .contact-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
+    .contact-card p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
+    .contact-card a { color: var(--moon); text-decoration: none; font-weight: 700; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 14px; color: var(--ink-muted); }
+    footer a { color: var(--ink-soft); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 768px) {
+      .container { padding: 48px 20px 80px; }
+      .hero { margin-bottom: 56px; }
+      .facts-row { grid-template-columns: 1fr; gap: 4px; }
+      .founders { grid-template-columns: 1fr; text-align: center; }
+      .founders-photo { margin: 0 auto; }
+      .nav-back { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">🌙 Luni</a>
+    <span class="nav-sep">›</span>
+    <span class="nav-title" data-i18n="nav_title">Presse</span>
+    <span class="nav-spacer"></span>
+    <a href="index.html" class="nav-back" data-i18n="nav_back">← Zurück zur Startseite</a>
+    <div class="lang-switcher">
+      <div class="lang-btn" id="langBtn">🇩🇪 DE ▾</div>
+      <div class="lang-dropdown">
+        <div class="lang-option active" onclick="setLang('de')">🇩🇪 Deutsch</div>
+        <div class="lang-option" onclick="setLang('en')">🇬🇧 English</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge" data-i18n="hero_badge">📣 Presse &amp; Medien-Kit</div>
+    <h1 data-i18n="hero_title">Pressekit für <em>Luni</em>.</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Ein datenschutzfreundlicher Baby-Tracker, in der Schweiz von einer Familie mit Neugeborenem gebaut. Du darfst alles auf dieser Seite frei verwenden. Wir senden gerne Pro-Lifetime-Codes für Reviews zu.</p>
+    <div class="download-row">
+      <a href="press-kit.zip" class="btn-primary" data-i18n="cta_download">⬇ Pressekit herunterladen (zip)</a>
+      <a href="https://apps.apple.com/app/id6761795775" class="btn-secondary" data-i18n="cta_appstore">Im App Store ansehen</a>
+    </div>
+  </div>
+
+  <!-- ELEVATOR PITCHES -->
+  <section>
+    <div class="section-label" data-i18n="pitch_label">Die Pitches</div>
+    <h2 class="section-title" data-i18n="pitch_title">In einem Satz, einem Absatz oder einer Seite.</h2>
+
+    <div class="pitch-grid">
+      <div class="pitch-card">
+        <div class="pitch-label" data-i18n="pitch_one_line_label">In einem Satz</div>
+        <div class="pitch-text" data-i18n="pitch_one_line_text">Der erste Baby-Tracker, der für Schweizer Familien gemacht ist — mit eingebauten Erinnerungen für Vorsorgeuntersuchungen, BAG-Impfplan und Schweizer Fristen, und kompromisslosem Datenschutz: keine Daten verlassen je die iCloud der Familie.</div>
+      </div>
+      <div class="pitch-card long">
+        <div class="pitch-label" data-i18n="pitch_paragraph_label">In einem Absatz</div>
+        <div class="pitch-text" data-i18n="pitch_paragraph_text">Luni ist eine iOS-App, die jungen Eltern hilft, Stillzeiten, Schlaf, Windeln und Wachstum festzuhalten — und macht zusätzlich die 41+ medizinischen und administrativen Termine sichtbar, die Eltern in der Schweiz erledigen müssen, von BAG-empfohlenen Impfungen über Vorsorgeuntersuchungen bis zur Geburtsanmeldung. Luni ist konsequent datenschutzfreundlich gebaut: keine Server, keine Analyse, kein Konto. Alle Daten bleiben in der eigenen iCloud der Familie, von Apple verschlüsselt. Zwei Eltern mit unterschiedlichen Apple-IDs sehen die gleiche Zeitleiste in Echtzeit. Verfügbar in Deutsch, Französisch, Italienisch und Englisch. Der Free-Tier enthält alle Tracking-Funktionen; der vollständige Schweizer Erinnerungskalender, Schlafvorhersagen, die Apple Watch App und die Apple-Familienfreigabe werden mit einem einmaligen Kauf für CHF 10 freigeschaltet — ein Kauf, alle Mitglieder der Apple-Familie haben Pro.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section>
+    <div class="section-label" data-i18n="founders_label">Gründer</div>
+    <h2 class="section-title" data-i18n="founders_title">Anna und Maurin Dai.</h2>
+
+    <div class="founders">
+      <div class="founders-photo">
+        <img src="images/IMG_8174.jpeg" alt="Anna und Maurin Dai" onerror="this.outerHTML='<span>👪</span>'" />
+      </div>
+      <div class="founders-info">
+        <h3 data-i18n="founders_name">Anna &amp; Maurin Dai</h3>
+        <div class="founders-meta" data-i18n="founders_meta">Robotik-Ingenieure · Winterthur 🇨🇭 · Frischgebackene Eltern</div>
+        <p data-i18n="founders_p1">Anna ist Software-Ingenieurin in der Robotik, Maurin Field Engineer im selben Bereich. Luni ist abends nach der Arbeit entstanden, nachdem ihre Tochter zur Welt kam — weil keine der vorhandenen Tracker-Apps für Schweizer Familien gemacht war, viele Daten kommerziell verwerteten oder Abo-Modelle für Funktionen verlangten, die Standard sein sollten.</p>
+        <p data-i18n="founders_p2">Luni wird von den beiden allein in Winterthur entwickelt und betreut.</p>
+        <div class="founders-links">
+          <a href="https://www.linkedin.com/in/anna-dai-robotics/" target="_blank" rel="noopener" data-i18n="founders_link_anna">Anna auf LinkedIn ↗</a>
+          <a href="https://lumics.github.io" target="_blank" rel="noopener" data-i18n="founders_link_maurin">Webseite von Maurin ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FACTS -->
+  <section>
+    <div class="section-label" data-i18n="facts_label">Auf einen Blick</div>
+    <h2 class="section-title" data-i18n="facts_title">Eckdaten.</h2>
+
+    <div class="facts">
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_platform_k">Plattform</div>
+        <div class="facts-val" data-i18n="facts_platform_v">iOS 26+ nativ, iPhone &amp; Apple Watch</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_languages_k">Sprachen</div>
+        <div class="facts-val" data-i18n="facts_languages_v">Deutsch, Französisch, Italienisch, Englisch</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_free_k">Free-Tier</div>
+        <div class="facts-val" data-i18n="facts_free_v">Alle Tracking-Funktionen (Stillen, Schlaf, Windeln, Wachstum), Partner-Sync via iCloud, WHO-Wachstumskurven, Insights, Live Activity, Push-Benachrichtigungen, mehrere Babys, Verlauf, 3 Schweizer Erinnerungen.</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_pro_k">Pro · CHF 10</div>
+        <div class="facts-val" data-i18n="facts_pro_v">Einmalkauf (kein Abo). Schaltet alle 41+ Schweizer Gesundheits- und Admin-Erinnerungen, Bayes'sche Schlafvorhersagen, die Apple Watch App und die Apple-Familienfreigabe frei — der einmalige Kauf gilt für alle Mitglieder der Apple-Familie. Alle künftigen Pro-Funktionen inklusive.</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_privacy_k">Datenschutz</div>
+        <div class="facts-val" data-i18n="facts_privacy_v">Ausschliesslich CloudKit. Keine Server, keine Analyse, keine Konten. Daten bleiben in der eigenen iCloud, von Apple verschlüsselt. Partner-Sync zwischen unterschiedlichen Apple-IDs erfolgt über Apples CKShare.</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_multibaby_k">Mehrere Babys</div>
+        <div class="facts-val" data-i18n="facts_multibaby_v">Bis zu 8 Babys (Zwillinge, Drillinge…), pro Baby eigene Farbe und gemeinsame Zeitleiste.</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_swiss_k">Schweizer Inhalte</div>
+        <div class="facts-val" data-i18n="facts_swiss_v">41+ Schweiz-spezifische medizinische und administrative Erinnerungen, basierend auf offiziellen Quellen (BAG, SGP, ch.ch).</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_launch_k">Veröffentlicht</div>
+        <div class="facts-val" data-i18n="facts_launch_v">April 2026 — Schweizer App Store</div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_appstore_k">App Store</div>
+        <div class="facts-val"><a href="https://apps.apple.com/app/id6761795775" target="_blank" rel="noopener">apps.apple.com/app/id6761795775</a></div>
+      </div>
+      <div class="facts-row">
+        <div class="facts-key" data-i18n="facts_website_k">Webseite</div>
+        <div class="facts-val"><a href="https://getluni.ch">getluni.ch</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section>
+    <div class="section-label" data-i18n="quotes_label">Zitate</div>
+    <h2 class="section-title" data-i18n="quotes_title">Zur freien Verwendung.</h2>
+
+    <div class="quote">
+      <div class="quote-text" data-i18n="quote_1_text">«Baby-Tracker sollten kein Ort sein, an dem Werbenetzwerke die sensibelsten Daten ernten, die Eltern je in eine App eingeben. Mit Luni zeigen wir, dass eine schöne, brauchbare Tracker-App ohne einen einzigen Server möglich ist.»</div>
+      <div class="quote-author" data-i18n="quote_1_author">— Maurin Dai, Mitgründer</div>
+    </div>
+
+    <div class="quote">
+      <div class="quote-text" data-i18n="quote_2_text">«Die meisten Baby-Apps, die wir ausprobiert haben, waren US-Apps mit einer deutschen Übersetzung obendrauf. Luni ist von Grund auf um die Schweizer Vorsorgeuntersuchungen, den BAG-Impfplan und die Schweizer Fristen herum gebaut — also um die Sachen, die Schweizer Eltern wirklich brauchen.»</div>
+      <div class="quote-author" data-i18n="quote_2_author">— Anna Dai, Mitgründerin</div>
+    </div>
+
+    <div class="quote">
+      <div class="quote-text" data-i18n="quote_3_text">«Wir haben Luni abends nach der Arbeit gestartet, nachdem unsere Tochter zur Welt gekommen ist. Wir sind kein Startup. Wir sind zwei Ingenieure und Eltern, die etwas Brauchbares für die eigene Familie machen wollten — und beschlossen haben, es zu teilen.»</div>
+      <div class="quote-author" data-i18n="quote_3_author">— Anna &amp; Maurin Dai</div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section>
+    <div class="section-label" data-i18n="screenshots_label">Visuelle Assets</div>
+    <h2 class="section-title" data-i18n="screenshots_title">Screenshots.</h2>
+    <p class="section-text" style="margin-bottom: 28px;" data-i18n="screenshots_intro">Klicke auf einen Screenshot, um ihn in voller Auflösung anzusehen. Alle Assets sind auch im Pressekit-Zip oben gebündelt.</p>
+
+    <div class="gallery">
+      <a class="gallery-item" href="screenshots/dashboard_white_v1.png" target="_blank"><img src="screenshots/dashboard_white_v1.png" alt="Luni Dashboard" /></a>
+      <a class="gallery-item" href="screenshots/sleep_insights_v1_23.jpeg" target="_blank"><img src="screenshots/sleep_insights_v1_23.jpeg" alt="Sleep Insights" /></a>
+      <a class="gallery-item" href="screenshots/insihgts_growth_v1.png" target="_blank"><img src="screenshots/insihgts_growth_v1.png" alt="WHO Growth Charts" /></a>
+      <a class="gallery-item" href="screenshots/insights_feeding_v1.png" target="_blank"><img src="screenshots/insights_feeding_v1.png" alt="Feeding Insights" /></a>
+      <a class="gallery-item" href="screenshots/log_feed_v1.png" target="_blank"><img src="screenshots/log_feed_v1.png" alt="Feeding Timer" /></a>
+      <a class="gallery-item" href="screenshots/reminders_v1.png" target="_blank"><img src="screenshots/reminders_v1.png" alt="Swiss Reminders" /></a>
+      <a class="gallery-item" href="screenshots/history_v1.png" target="_blank"><img src="screenshots/history_v1.png" alt="History Timeline" /></a>
+      <a class="gallery-item" href="screenshots/Lock_Screen_liveactivity_feed.png" target="_blank"><img src="screenshots/Lock_Screen_liveactivity_feed.png" alt="Live Activity on Lock Screen" /></a>
+      <a class="gallery-item" href="screenshots/Home_Screen_liveactivity_nodge_feed.png" target="_blank"><img src="screenshots/Home_Screen_liveactivity_nodge_feed.png" alt="Dynamic Island" /></a>
+    </div>
+
+    <!-- WATCH ROW -->
+    <h3 style="font-size:18px;font-weight:700;margin:40px 0 16px;color:var(--ink);" data-i18n="screenshots_watch_title">Apple Watch (Pro)</h3>
+    <div class="gallery" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr));">
+      <a class="gallery-item" href="screenshots/watch_home_v1.PNG" target="_blank" style="aspect-ratio:41/49;background:#000;"><img src="screenshots/watch_home_v1.PNG" alt="Apple Watch Home" style="object-fit:contain;" /></a>
+      <a class="gallery-item" href="screenshots/watch_feed_v1.PNG" target="_blank" style="aspect-ratio:41/49;background:#000;"><img src="screenshots/watch_feed_v1.PNG" alt="Apple Watch Feeding" style="object-fit:contain;" /></a>
+      <a class="gallery-item" href="screenshots/watch_diaper_v1.PNG" target="_blank" style="aspect-ratio:41/49;background:#000;"><img src="screenshots/watch_diaper_v1.PNG" alt="Apple Watch Diaper" style="object-fit:contain;" /></a>
+      <a class="gallery-item" href="screenshots/watch_complication_feed_v1.PNG" target="_blank" style="aspect-ratio:41/49;background:#000;"><img src="screenshots/watch_complication_feed_v1.PNG" alt="Apple Watch Complication — Feeding" style="object-fit:contain;" /></a>
+      <a class="gallery-item" href="screenshots/watch_complication_sleep_v1.PNG" target="_blank" style="aspect-ratio:41/49;background:#000;"><img src="screenshots/watch_complication_sleep_v1.PNG" alt="Apple Watch Complication — Sleep" style="object-fit:contain;" /></a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="contact-card">
+      <h3 data-i18n="contact_title">Presseanfragen &amp; Reviews</h3>
+      <p data-i18n="contact_who">Anna &amp; Maurin Dai · Winterthur 🇨🇭</p>
+      <p><a href="mailto:app@getluni.ch">app@getluni.ch</a> · +41 78 829 18 00</p>
+      <p style="margin-top: 18px; font-size: 13px;" data-i18n="contact_offer">Wir senden gerne Pro-Lifetime-Codes für Reviews zu, telefonieren 15 Minuten oder treffen euch in Winterthur oder Zürich.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="index.html" data-i18n="footer_home">Startseite</a>
+  <a href="privacy.html" data-i18n="footer_privacy">Datenschutz</a>
+  <a href="terms.html" data-i18n="footer_terms">AGB</a>
+  <a href="eula.html">EULA</a>
+  <a href="mailto:app@getluni.ch" data-i18n="footer_contact">Kontakt</a>
+  <div style="margin-top: 16px;" data-i18n="footer_copy">© 2026 Luni · Mit ❤️ in Winti gemacht</div>
+</footer>
+
+<script>
+const translations = {
+  de: {
+    lang_label: '🇩🇪 DE',
+    nav_title: 'Presse',
+    nav_back: '← Zurück zur Startseite',
+
+    hero_badge: '📣 Presse &amp; Medien-Kit',
+    hero_title: 'Pressekit für <em>Luni</em>.',
+    hero_sub: 'Ein datenschutzfreundlicher Baby-Tracker, in der Schweiz von einer Familie mit Neugeborenem gebaut. Du darfst alles auf dieser Seite frei verwenden. Wir senden gerne Pro-Lifetime-Codes für Reviews zu.',
+    cta_download: '⬇ Pressekit herunterladen (zip)',
+    cta_appstore: 'Im App Store ansehen',
+
+    pitch_label: 'Die Pitches',
+    pitch_title: 'In einem Satz, einem Absatz oder einer Seite.',
+    pitch_one_line_label: 'In einem Satz',
+    pitch_one_line_text: 'Der erste Baby-Tracker, der für Schweizer Familien gemacht ist — mit eingebauten Erinnerungen für Vorsorgeuntersuchungen, BAG-Impfplan und Schweizer Fristen, und kompromisslosem Datenschutz: keine Daten verlassen je die iCloud der Familie.',
+    pitch_paragraph_label: 'In einem Absatz',
+    pitch_paragraph_text: 'Luni ist eine iOS-App, die jungen Eltern hilft, Stillzeiten, Schlaf, Windeln und Wachstum festzuhalten — und macht zusätzlich die 41+ medizinischen und administrativen Termine sichtbar, die Eltern in der Schweiz erledigen müssen, von BAG-empfohlenen Impfungen über Vorsorgeuntersuchungen bis zur Geburtsanmeldung. Luni ist konsequent datenschutzfreundlich gebaut: keine Server, keine Analyse, kein Konto. Alle Daten bleiben in der eigenen iCloud der Familie, von Apple verschlüsselt. Zwei Eltern mit unterschiedlichen Apple-IDs sehen die gleiche Zeitleiste in Echtzeit. Verfügbar in Deutsch, Französisch, Italienisch und Englisch. Der Free-Tier enthält alle Tracking-Funktionen; der vollständige Schweizer Erinnerungskalender, Schlafvorhersagen, die Apple Watch App und die Apple-Familienfreigabe werden mit einem einmaligen Kauf für CHF 10 freigeschaltet — ein Kauf, alle Mitglieder der Apple-Familie haben Pro.',
+
+    founders_label: 'Gründer',
+    founders_title: 'Anna und Maurin Dai.',
+    founders_name: 'Anna &amp; Maurin Dai',
+    founders_meta: 'Robotik-Ingenieure · Winterthur 🇨🇭 · Frischgebackene Eltern',
+    founders_p1: 'Anna ist Software-Ingenieurin in der Robotik, Maurin Field Engineer im selben Bereich. Luni ist abends nach der Arbeit entstanden, nachdem ihre Tochter zur Welt kam — weil keine der vorhandenen Tracker-Apps für Schweizer Familien gemacht war, viele Daten kommerziell verwerteten oder Abo-Modelle für Funktionen verlangten, die Standard sein sollten.',
+    founders_p2: 'Luni wird von den beiden allein in Winterthur entwickelt und betreut.',
+    founders_link_anna: 'Anna auf LinkedIn ↗',
+    founders_link_maurin: 'Webseite von Maurin ↗',
+
+    facts_label: 'Auf einen Blick',
+    facts_title: 'Eckdaten.',
+    facts_platform_k: 'Plattform',
+    facts_platform_v: 'iOS 26+ nativ, iPhone &amp; Apple Watch',
+    facts_languages_k: 'Sprachen',
+    facts_languages_v: 'Deutsch, Französisch, Italienisch, Englisch',
+    facts_free_k: 'Free-Tier',
+    facts_free_v: 'Alle Tracking-Funktionen (Stillen, Schlaf, Windeln, Wachstum), Partner-Sync via iCloud, WHO-Wachstumskurven, Insights, Live Activity, Push-Benachrichtigungen, mehrere Babys, Verlauf, 3 Schweizer Erinnerungen.',
+    facts_pro_k: 'Pro · CHF 10',
+    facts_pro_v: 'Einmalkauf (kein Abo). Schaltet alle 41+ Schweizer Gesundheits- und Admin-Erinnerungen, Bayes\'sche Schlafvorhersagen, die Apple Watch App und die Apple-Familienfreigabe frei — der einmalige Kauf gilt für alle Mitglieder der Apple-Familie. Alle künftigen Pro-Funktionen inklusive.',
+    facts_privacy_k: 'Datenschutz',
+    facts_privacy_v: 'Ausschliesslich CloudKit. Keine Server, keine Analyse, keine Konten. Daten bleiben in der eigenen iCloud, von Apple verschlüsselt. Partner-Sync zwischen unterschiedlichen Apple-IDs erfolgt über Apples CKShare.',
+    facts_multibaby_k: 'Mehrere Babys',
+    facts_multibaby_v: 'Bis zu 8 Babys (Zwillinge, Drillinge…), pro Baby eigene Farbe und gemeinsame Zeitleiste.',
+    facts_swiss_k: 'Schweizer Inhalte',
+    facts_swiss_v: '41+ Schweiz-spezifische medizinische und administrative Erinnerungen, basierend auf offiziellen Quellen (BAG, SGP, ch.ch).',
+    facts_launch_k: 'Veröffentlicht',
+    facts_launch_v: 'April 2026 — Schweizer App Store',
+    facts_appstore_k: 'App Store',
+    facts_website_k: 'Webseite',
+
+    quotes_label: 'Zitate',
+    quotes_title: 'Zur freien Verwendung.',
+    quote_1_text: '«Baby-Tracker sollten kein Ort sein, an dem Werbenetzwerke die sensibelsten Daten ernten, die Eltern je in eine App eingeben. Mit Luni zeigen wir, dass eine schöne, brauchbare Tracker-App ohne einen einzigen Server möglich ist.»',
+    quote_1_author: '— Maurin Dai, Mitgründer',
+    quote_2_text: '«Die meisten Baby-Apps, die wir ausprobiert haben, waren US-Apps mit einer deutschen Übersetzung obendrauf. Luni ist von Grund auf um die Schweizer Vorsorgeuntersuchungen, den BAG-Impfplan und die Schweizer Fristen herum gebaut — also um die Sachen, die Schweizer Eltern wirklich brauchen.»',
+    quote_2_author: '— Anna Dai, Mitgründerin',
+    quote_3_text: '«Wir haben Luni abends nach der Arbeit gestartet, nachdem unsere Tochter zur Welt gekommen ist. Wir sind kein Startup. Wir sind zwei Ingenieure und Eltern, die etwas Brauchbares für die eigene Familie machen wollten — und beschlossen haben, es zu teilen.»',
+    quote_3_author: '— Anna &amp; Maurin Dai',
+
+    screenshots_label: 'Visuelle Assets',
+    screenshots_title: 'Screenshots.',
+    screenshots_intro: 'Klicke auf einen Screenshot, um ihn in voller Auflösung anzusehen. Alle Assets sind auch im Pressekit-Zip oben gebündelt.',
+    screenshots_watch_title: 'Apple Watch (Pro)',
+
+    contact_title: 'Presseanfragen &amp; Reviews',
+    contact_who: 'Anna &amp; Maurin Dai · Winterthur 🇨🇭',
+    contact_offer: 'Wir senden gerne Pro-Lifetime-Codes für Reviews zu, telefonieren 15 Minuten oder treffen euch in Winterthur oder Zürich.',
+
+    footer_home: 'Startseite',
+    footer_privacy: 'Datenschutz',
+    footer_terms: 'AGB',
+    footer_contact: 'Kontakt',
+    footer_copy: '© 2026 Luni · Mit ❤️ in Winti gemacht'
+  },
+
+  en: {
+    lang_label: '🇬🇧 EN',
+    nav_title: 'Press',
+    nav_back: '← Back to home',
+
+    hero_badge: '📣 Press &amp; Media Kit',
+    hero_title: 'Press kit for <em>Luni</em>.',
+    hero_sub: 'A privacy-first baby tracker, built in Switzerland by a Swiss family with a newborn. Use anything below freely. We\'re happy to send Pro lifetime codes for review.',
+    cta_download: '⬇ Download press kit (zip)',
+    cta_appstore: 'View on App Store',
+
+    pitch_label: 'The pitches',
+    pitch_title: 'In one line, one paragraph, or one page.',
+    pitch_one_line_label: 'One line',
+    pitch_one_line_text: 'The first baby-tracking app made for Swiss families — with built-in reminders for U-checkups, BAG vaccinations, and Swiss admin deadlines, and zero data ever leaving your iCloud.',
+    pitch_paragraph_label: 'One paragraph',
+    pitch_paragraph_text: 'Luni is an iOS app that helps new parents track feeding, sleep, diaper changes, and growth — and uniquely surfaces the 41+ Swiss medical and administrative milestones every parent in Switzerland has to handle, from BAG-recommended vaccinations to Swiss birth registration deadlines. It is deliberately privacy-first: there are no servers, no analytics, no accounts. All data stays in the family\'s own iCloud, encrypted by Apple. Two parents on different Apple IDs share the same timeline in real time. Available in German, French, Italian, and English. The free tier includes all core tracking; the full Swiss reminder calendar, sleep predictions, the Apple Watch app, and Apple Family Sharing unlock with a one-time CHF 10 purchase — meaning a single purchase is shared with everyone in the buyer\'s iCloud family.',
+
+    founders_label: 'Founders',
+    founders_title: 'Anna and Maurin Dai.',
+    founders_name: 'Anna &amp; Maurin Dai',
+    founders_meta: 'Robotics engineers · Winterthur 🇨🇭 · First-time parents',
+    founders_p1: 'Anna is a robotics software engineer; Maurin a field engineer in the same field. They built Luni in their evenings after their daughter was born, because every existing tracker either harvested data, was built around the US healthcare system, or charged $60+/year for features that should be table stakes.',
+    founders_p2: 'Luni is built and maintained entirely by the two of them, in Winterthur.',
+    founders_link_anna: 'Anna on LinkedIn ↗',
+    founders_link_maurin: 'Maurin\'s website ↗',
+
+    facts_label: 'At a glance',
+    facts_title: 'Key facts.',
+    facts_platform_k: 'Platform',
+    facts_platform_v: 'iOS 26+ native, iPhone &amp; Apple Watch',
+    facts_languages_k: 'Languages',
+    facts_languages_v: 'German, French, Italian, English',
+    facts_free_k: 'Free tier',
+    facts_free_v: 'All tracking (feeding, sleep, diapers, growth), partner sync via iCloud, WHO percentile charts, insights, Live Activity, push notifications, multi-baby, history, 3 Swiss reminders.',
+    facts_pro_k: 'Pro · CHF 10',
+    facts_pro_v: 'One-time purchase (no subscription). Unlocks all 41+ Swiss medical &amp; admin reminders, Bayesian sleep predictions, the Apple Watch app, and Apple Family Sharing — meaning the single purchase is shared with everyone in the buyer\'s iCloud family. All future Pro features included.',
+    facts_privacy_k: 'Privacy',
+    facts_privacy_v: 'CloudKit only. No servers, no analytics, no accounts. Data stays in the user\'s own iCloud, encrypted by Apple. Sharing between parents on different Apple IDs is via Apple\'s CKShare.',
+    facts_multibaby_k: 'Multi-baby',
+    facts_multibaby_v: 'Up to 8 babies (twins, triplets…), with per-baby color coding and combined timeline.',
+    facts_swiss_k: 'Swiss content',
+    facts_swiss_v: '41+ Swiss-specific medical &amp; admin reminders, based on official Swiss sources (BAG, SGP, ch.ch).',
+    facts_launch_k: 'Launched',
+    facts_launch_v: 'April 2026 — Swiss App Store',
+    facts_appstore_k: 'App Store',
+    facts_website_k: 'Website',
+
+    quotes_label: 'Quotes',
+    quotes_title: 'Use freely.',
+    quote_1_text: '"Baby trackers should not be a place where ad-tech companies harvest the most sensitive data a parent ever touches. Luni proves you can build a beautiful, useful tracker without ever uploading anything to a server."',
+    quote_1_author: '— Maurin Dai, co-founder',
+    quote_2_text: '"Most baby apps we tried were American apps with a German translation glued on top. Luni is built around the Swiss U-checkup schedule, the BAG vaccination plan, and the Swiss birth registration deadlines — the things Swiss parents actually need."',
+    quote_2_author: '— Anna Dai, co-founder',
+    quote_3_text: '"We started Luni in our own evenings after our daughter was born. We\'re not a startup. We\'re two engineers and parents trying to make something useful for our own family — and decided to share it."',
+    quote_3_author: '— Anna &amp; Maurin Dai',
+
+    screenshots_label: 'Visual assets',
+    screenshots_title: 'Screenshots.',
+    screenshots_intro: 'Click any screenshot to view full size. All assets are also bundled in the press kit zip above.',
+    screenshots_watch_title: 'Apple Watch (Pro)',
+
+    contact_title: 'Press &amp; review enquiries',
+    contact_who: 'Anna &amp; Maurin Dai · Winterthur 🇨🇭',
+    contact_offer: 'We\'re happy to send Pro lifetime codes for review, hop on a 15-minute call, or meet in Winterthur or Zürich.',
+
+    footer_home: 'Home',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms',
+    footer_contact: 'Contact',
+    footer_copy: '© 2026 Luni · Made with ❤️ in Winti'
+  }
+};
+
+let currentLang = 'de';
+
+function setLang(lang) {
+  if (!translations[lang]) return;
+  currentLang = lang;
+  const t = translations[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  document.getElementById('langBtn').innerHTML = t.lang_label + ' ▾';
+
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    const onclick = opt.getAttribute('onclick') || '';
+    opt.classList.toggle('active', onclick.includes(`'${lang}'`));
+  });
+
+  const titles = { de: 'Pressekit — Luni', en: 'Press Kit — Luni' };
+  document.title = titles[lang] || 'Press Kit — Luni';
+}
+
+document.getElementById('langBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.querySelector('.lang-switcher').classList.toggle('open');
+});
+document.addEventListener('click', function() {
+  document.querySelector('.lang-switcher').classList.remove('open');
+});
+
+const browserLang = (navigator.language || 'de').split('-')[0];
+setLang(['de','en'].includes(browserLang) ? browserLang : 'de');
+</script>
+
+</body>
+</html>
